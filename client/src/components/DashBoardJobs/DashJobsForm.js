@@ -3,7 +3,7 @@ import React from "react";
 const DashJobsForm = () => {
 
 
-    return (   
+    return (
         <>
             <form className="form">    {/* Form to be reStyled */}
                 <input type="text" placeholder="Job Title" name="Job Title" />
@@ -11,7 +11,7 @@ const DashJobsForm = () => {
                 <input type="text" placeholder="Description" name="Description" />
                 <input type="datePosted" placeholder="Date Posted" name="Date Posted" />
                 <input type="expiryDate" placeholder="Expiry Date" name="Expiry Date" />
-                <input type="dateApplied" placeholder="Date Applied" name="Date Applied"/>
+                <input type="dateApplied" placeholder="Date Applied" name="Date Applied" />
                 <button type="submit">Save</button>
             </form>
         </>
