@@ -4,7 +4,7 @@ import DashJobs from "./DashJobs";
 const DashJobsList = () => {
     return (
         <>
-        <h3>I am the jobs list</h3>
+        <h3>I am the applied for jobs list</h3>
         <DashJobs/>
         </>
     )
