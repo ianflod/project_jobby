@@ -1,16 +1,25 @@
 package com.example.codeclan.Project_Jobby.models;
 
 import com.example.codeclan.Project_Jobby.enums.EventType;
-
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "events")
 public class Event {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "event")
     private EventType eventType;
+    @Column(name = "comments")
     private String comments;
+    @Column(name = "user")
     private User user;
+    @Column(name = "job")
     private Job job;
+    @Column(name = "date")
     private LocalDateTime date;
 
     public Event(EventType eventType, String comments, User user, Job job) {
@@ -19,6 +28,10 @@ public class Event {
         this.user = user;
         this.job = job;
         this.date = LocalDateTime.now();
+    }
+
+    public Event(){
+
     }
 
     public long getId() {

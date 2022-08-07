@@ -1,5 +1,8 @@
 package com.example.codeclan.Project_Jobby.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ public class Job implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name="employer_name")
     private String employerName;
     @Column(name="job_title")
@@ -37,7 +40,20 @@ public class Job implements Serializable {
     private Boolean isFavorite;
     @Column(name="applied")
     private Boolean appliedFor;
-    // JOIN WILL GO HERE
+
+    @JsonIgnoreProperties({"jobs"})
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @JsonIgnoreProperties
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE) // WHAT DOES THIS DO?
+    @JoinTable(
+            name="jobs_events",
+            joinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)}
+    )
     private List<Event> events;
 
     public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary, Date date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor) {

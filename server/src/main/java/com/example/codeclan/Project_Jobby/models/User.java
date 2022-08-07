@@ -1,32 +1,63 @@
 package com.example.codeclan.Project_Jobby.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table
 public class User {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "first_name")
     private String firstName;
-    private String LastName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
+    //
+    //
+    // NOT AURE ABOUT THE MAPS BELOW
+    // One User has many faveJobs
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Job> faveJobs;
+    // One User has many appliedJobs
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Job> appliedJobs;
+    // One User has many events
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Event> events;
+    //
+    //
+    //
+    @Column(name = "date_of_birth")
     private LocalDate dob;
+    // @Column(name = "is_admin")
     // private boolean isAdmin;
-
 
     public User(String firstName, String lastName, String email, String password, LocalDate dob) {
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.faveJobs = new ArrayList<>();
         this.appliedJobs = new ArrayList<>();
         this.events = new ArrayList<>();
         this.dob = dob;
+    }
+
+    public User() {
+
     }
 
     public long getId() {
@@ -46,11 +77,11 @@ public class User {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        lastName = lastName;
     }
 
     public String getEmail() {

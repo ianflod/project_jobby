@@ -19,23 +19,32 @@ public class EventController {
     }
 
     // GET One
-    // Path Variable appends the urlwith the database id
     @GetMapping(value = "/events/{id}")
     public ResponseEntity getEvents(@PathVariable Long id){
-        return new ResponseEntity<>(eventRepository.findById(id), HttpStatus.OK)
+        return new ResponseEntity<>(eventRepository.findById(id), HttpStatus.OK);
     }
 
+    // Save New
     @PostMapping(value = "/events")
     public ResponseEntity<Event> postEvent(@RequestBody Event event) {
         eventRepository.save(event);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
+    // Delete One
     @DeleteMapping(value = "/events/{id}")
     public ResponseEntity<Event> deleteEvent(@PathVariable Long id) {
         Event found = eventRepository.getOne(id);
         eventRepository.delete(found);
-        return new ResponseEntity<>(null HttpStatus.OK)
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    // Update One
+    @PutMapping(value = "/events/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        Event found = eventRepository.getOne(id);
+        eventRepository.save(event);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 }
