@@ -1,6 +1,8 @@
 package com.example.codeclan.Project_Jobby.models;
 
 import com.example.codeclan.Project_Jobby.enums.EventType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,13 +13,18 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     @Column(name = "event")
     private EventType eventType;
     @Column(name = "comments")
     private String comments;
-    @Column(name = "user")
+    @JsonIgnoreProperties({"events"})
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @Column(name = "job")
+    @JsonIgnoreProperties({"events"})
+    @ManyToOne
+    @JoinColumn(name = "job_id", nullable = false)
     private Job job;
     @Column(name = "date")
     private LocalDateTime date;

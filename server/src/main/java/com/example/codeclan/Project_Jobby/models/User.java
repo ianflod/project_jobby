@@ -1,6 +1,7 @@
 package com.example.codeclan.Project_Jobby.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name="users")
 public class User {
 
     @Id
@@ -22,24 +23,29 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
-    //
-    //
-    // NOT AURE ABOUT THE MAPS BELOW
-    // One User has many faveJobs
+
     @JsonBackReference
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "fave_job_users",
+            joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)}
+    )
     private List<Job> faveJobs;
-    // One User has many appliedJobs
+
     @JsonBackReference
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "applied_job_users",
+            joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)}
+    )
     private List<Job> appliedJobs;
-    // One User has many events
     @JsonBackReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Event> events;
-    //
-    //
-    //
     @Column(name = "date_of_birth")
     private LocalDate dob;
     // @Column(name = "is_admin")

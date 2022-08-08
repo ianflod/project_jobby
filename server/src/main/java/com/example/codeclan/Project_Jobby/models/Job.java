@@ -41,14 +41,29 @@ public class Job implements Serializable {
     @Column(name="applied")
     private Boolean appliedFor;
 
-    @JsonIgnoreProperties({"jobs"})
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JsonIgnoreProperties
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "fave_jobs_users",
+            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
+    )
+    private User user_fave;
 
     @JsonIgnoreProperties
     @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE) // WHAT DOES THIS DO?
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "applied_jobs_users",
+            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
+    )
+    private User user_applied;
+
+    @JsonIgnoreProperties
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name="jobs_events",
             joinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)},
@@ -56,7 +71,7 @@ public class Job implements Serializable {
     )
     private List<Event> events;
 
-    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary, Date date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor) {
+    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary, Date date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor, User user_fave, User user_applied) {
         this.employerName = employerName;
         this.jobTitle = jobTitle;
         this.locationName = locationName;
@@ -70,10 +85,20 @@ public class Job implements Serializable {
         this.appliedFor = appliedFor;
         // questions over events being here
         this.events = new ArrayList<>();
+        this.user_fave = user_fave;
+        this.user_applied = user_applied;
     }
 
     public Job(){
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmployerName() {
@@ -176,6 +201,21 @@ public class Job implements Serializable {
         this.events.add(event);
     }
 
+    public User getUser_fave() {
+        return user_fave;
+    }
+
+    public void setUser_fave(User user_fave) {
+        this.user_fave = user_fave;
+    }
+
+    public User getUser_applied() {
+        return user_applied;
+    }
+
+    public void setUser_applied(User user_applied) {
+        this.user_applied = user_applied;
+    }
 }
 
 
