@@ -15,8 +15,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Profile("!test")
 @Component
@@ -41,7 +39,7 @@ public class DataLoader implements ApplicationRunner {
       User user1 = new User("Josh", "McCormack", "joshmcc@gmail.com", "password123", dob);
       userRepository.save(user1);
       Job job1 = new Job("Fanduel", "Junior Software Developer", "Glasgow", 28000, 32000, date1,"Description goes here",
-        2, "www.abc.com",  true, false, user1);
+        2, "www.abc.com",  true, false);
       jobRepository.save(job1);
       Event event1 = new Event(EventType.VIRTUALINTERVIEW, "A virtual interview with bob about", user1, job1);
       eventRepository.save(event1);

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -50,7 +49,7 @@ public class Job implements Serializable {
             joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
     )
-    private User user_fave;
+    private List<User> userFave;
 
     @JsonIgnoreProperties
     @ManyToMany
@@ -60,20 +59,21 @@ public class Job implements Serializable {
             joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
     )
-    private User user_applied;
+    private List<User> userApplied;
 
     @JsonIgnoreProperties
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name="jobs_events",
-            joinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)},
+            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)}
     )
     private List<Event> events;
 
 
-    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary, Date date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor, User user_fave, User user_applied) {
+    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary,
+      LocalDate date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor) {
         this.employerName = employerName;
         this.jobTitle = jobTitle;
         this.locationName = locationName;
@@ -85,11 +85,10 @@ public class Job implements Serializable {
         this.jobUrl = jobUrl;
         this.isFavorite = isFavorite;
         this.appliedFor = appliedFor;
-        this.user = user;
         // questions over events being here
         this.events = new ArrayList<>();
-        this.user_fave = user_fave;
-        this.user_applied = user_applied;
+        this.userFave = new ArrayList<>();
+        this.userApplied = new ArrayList<>();
     }
 
     public Job(){
@@ -204,20 +203,28 @@ public class Job implements Serializable {
         this.events.add(event);
     }
 
-    public User getUser_fave() {
-        return user_fave;
+    public List<User> getUserFave() {
+        return userFave;
     }
 
-    public void setUser_fave(User user_fave) {
-        this.user_fave = user_fave;
+    public void setUserFave(List<User> userFave) {
+        this.userFave = userFave;
     }
 
-    public User getUser_applied() {
-        return user_applied;
+    public List<User> getUserApplied() {
+        return userApplied;
     }
 
-    public void setUser_applied(User user_applied) {
-        this.user_applied = user_applied;
+    public void setUserApplied(List<User> userApplied) {
+        this.userApplied = userApplied;
+    }
+
+    public void addUserFave(User userFave) {
+        this.userFave.add(userFave);
+    }
+
+    public void addUserApplied(User userApplied) {
+        this.userApplied.add(userApplied);
     }
 }
 
