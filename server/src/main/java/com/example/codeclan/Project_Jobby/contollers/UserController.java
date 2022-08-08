@@ -38,8 +38,16 @@ public class UserController {
     @PutMapping(value = "/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         User found = userRepository.getOne(id);
-        userRepository.save(user);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        found.setFirstName(user.getFirstName());
+        found.setLastName(user.getLastName());
+        found.setEmail(user.getEmail());
+        found.setPassword(user.getPassword());
+        found.setDob(user.getDob());
+        found.setEvents(user.getEvents());
+        found.setAppliedJobs(user.getAppliedJobs());
+        found.setFaveJobs(user.getFaveJobs());
+        userRepository.save(found);
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
 }
