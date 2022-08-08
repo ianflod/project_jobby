@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Job implements Serializable {
     @Column(name="max_salary")
     private int maximumSalary;
     @Column(name="date")
-    private Date date;
+    private LocalDate date;
     @Column(name="job_desc")
     private String jobDescription;
     @Column(name="no_of_applications")
@@ -56,7 +57,9 @@ public class Job implements Serializable {
     )
     private List<Event> events;
 
-    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary, Date date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor) {
+    public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary,
+      LocalDate date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor
+      , User user) {
         this.employerName = employerName;
         this.jobTitle = jobTitle;
         this.locationName = locationName;
@@ -68,6 +71,7 @@ public class Job implements Serializable {
         this.jobUrl = jobUrl;
         this.isFavorite = isFavorite;
         this.appliedFor = appliedFor;
+        this.user = user;
         // questions over events being here
         this.events = new ArrayList<>();
     }
@@ -116,11 +120,11 @@ public class Job implements Serializable {
         this.maximumSalary = maximumSalary;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

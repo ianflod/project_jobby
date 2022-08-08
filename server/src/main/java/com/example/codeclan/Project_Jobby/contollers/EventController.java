@@ -13,7 +13,7 @@ public class EventController {
     EventRepository eventRepository;
 
     // GET All
-    @GetMapping(value="/events")
+    @GetMapping(value = "/events")
     public ResponseEntity<List<Event>> getAllEvents(){
         return new ResponseEntity<>(eventRepository.findAll(), HttpStatus.OK);
     }
@@ -43,8 +43,13 @@ public class EventController {
     @PutMapping(value = "/events/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event event) {
         Event found = eventRepository.getOne(id);
-        eventRepository.save(event);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        found.setJob(event.getJob());
+        found.setUser(event.getUser());
+        found.setDate(event.getDate());
+        found.setComments(event.getComments());
+        found.setEventType(event.getEventType());
+        eventRepository.save(found);
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
 }

@@ -13,37 +13,6 @@ public class JobController {
 
     JobRepository jobRepository;
 
-    // Reed Api Jobs
-    @GetMapping(value = "/jobs")
-    public ResponseEntity<List<Job>> getAllJobs(){
-        return new ResponseEntity<>(jobRepository.findAll(), HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/jobs/{id}")
-    public ResponseEntity getJobs(@PathVariable Long id){
-        return new ResponseEntity<>(jobRepository.findById(id), HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/jobs")
-    public ResponseEntity<Job> postJob(@RequestBody Job job){
-        jobRepository.save(job);
-        return new ResponseEntity<>(job, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping(value = "/jobs/{id}")
-    public ResponseEntity<Job> deleteJob(@PathVariable Long id) {
-        Job found = jobRepository.getOne(id);
-        jobRepository.delete(found);
-        return new ResponseEntity<>(null, HttpStatus.OK);
-    }
-
-    @PutMapping(value = "/jobs/{id}")
-    public ResponseEntity<Job> updateJob(@PathVariable Long id, @RequestBody Job job) {
-        Job found = jobRepository.getOne(id);
-        jobRepository.save(job);
-        return new ResponseEntity<>(null, HttpStatus.OK);
-    }
-
     // Watched Jobs
     @GetMapping(value = "/jobs/watched")
     public ResponseEntity<List<Job>> getAllWatchedJobs(){
@@ -71,8 +40,19 @@ public class JobController {
     @PutMapping(value = "/jobs/watched/{id}")
     public ResponseEntity<Job> updateWatchedJob(@PathVariable Long id, @RequestBody Job job) {
         Job found = jobRepository.getOne(id);
-        jobRepository.save(job);
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        found.setApplications(job.getApplications());
+        found.setDate(job.getDate());
+        found.setJobDescription(job.getJobDescription());
+        found.setJobTitle(job.getJobTitle());
+        found.setEmployerName(job.getEmployerName());
+        found.setEvents(job.getEvents());
+        found.setLocationName(job.getLocationName());
+        found.setMinimumSalary(job.getMinimumSalary());
+        found.setMaximumSalary(job.getMaximumSalary());
+        found.setAppliedFor(job.getAppliedFor());
+        found.setFavorite(job.getFavorite());
+        jobRepository.save(found);
+        return new ResponseEntity<>(found, HttpStatus.OK);
     }
 
     // Applied for Jobs
