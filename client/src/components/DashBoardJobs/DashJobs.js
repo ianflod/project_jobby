@@ -3,7 +3,7 @@ import React from "react";
 const DashJobs = () => {
 
     return (
-        <h4>I am a job</h4>
+        <h4>I am a applied for job</h4>
     )
 
 }
