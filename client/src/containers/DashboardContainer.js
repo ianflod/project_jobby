@@ -9,7 +9,7 @@ const DashboardContainer = () => {
     return (
         <frameElement>
             <h2>I am the dashboard container hello</h2>
-            <p> <a className="link" href="http://localhost:3001/application-form">Add New application(this will need changed I think)</a> </p>
+            <p> <a className="link" href="/application-form">Add New application</a> </p>
             <DashJobsList />
         </frameElement>
     )
