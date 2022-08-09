@@ -1,8 +1,14 @@
 import React from "react";
 
-const ReedJob = () => {
+const ReedJob = ({reedJob}) => {
+
+
+  if (!reedJob){
+    return "loading..."
+  }
+
   return (
-    <h4>I am a reed job</h4>
+    <p>{reedJob.jobTitle}</p>
   )
 }
 

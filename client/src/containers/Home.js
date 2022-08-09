@@ -2,11 +2,11 @@ import React, { Fragment } from "react"
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
 import Search from "../components/search";
 
-const Home = () => {
+const Home = ({reedJobs}) => {
     return (
     <Fragment>  
         <Search/>
-        <ReedJobsList/>
+        <ReedJobsList reedJobs={reedJobs}/>
     </Fragment>  
     )
   
