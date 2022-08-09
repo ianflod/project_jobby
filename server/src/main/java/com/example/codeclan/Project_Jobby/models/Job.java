@@ -1,5 +1,6 @@
 package com.example.codeclan.Project_Jobby.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -41,7 +42,7 @@ public class Job implements Serializable {
     @Column(name="applied")
     private Boolean appliedFor;
 
-    @JsonIgnoreProperties
+
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -51,7 +52,7 @@ public class Job implements Serializable {
     )
     private List<User> userFave;
 
-    @JsonIgnoreProperties
+
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -61,14 +62,8 @@ public class Job implements Serializable {
     )
     private List<User> userApplied;
 
-    @JsonIgnoreProperties
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            name="jobs_events",
-            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)}
-    )
+    @JsonIgnore
+    @OneToMany(mappedBy = "job")
     private List<Event> events;
 
 

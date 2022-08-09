@@ -18,7 +18,7 @@ public class JobController {
     // Watched Jobs
     @GetMapping(value = "/jobs/watched")
     public ResponseEntity<List<Job>> getAllWatchedJobs(){
-        return new ResponseEntity<>(jobRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(jobRepository.findByIsFavorite(true), HttpStatus.OK);
     }
 
     @GetMapping(value = "/jobs/watched/{id}")
@@ -60,7 +60,7 @@ public class JobController {
     // Applied for Jobs
     @GetMapping(value = "/jobs/applied")
     public ResponseEntity<List<Job>> getAllAppliedJobs(){
-        return new ResponseEntity<>(jobRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(jobRepository.findByAppliedFor(true), HttpStatus.OK);
     }
 
     @GetMapping(value = "/jobs/applied/{id}")
