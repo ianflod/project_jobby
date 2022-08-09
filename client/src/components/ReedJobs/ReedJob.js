@@ -1,6 +1,10 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 
 const ReedJob = ({reedJob}) => {
+
+  const url = "/" + reedJob._id;
 
 
   if (!reedJob){
@@ -11,9 +15,9 @@ const ReedJob = ({reedJob}) => {
     <>
       <h2>{reedJob.jobTitle}</h2>
       <p>Location:{reedJob.locationName}</p>
-      <p>Emplyer Name:{reedJob.employerName}</p>
+      <p>Empolyer Name:{reedJob.employerName}</p>
       <p>Date Posted: {reedJob.date}</p>
-      <button>More details</button>
+      <Link to = {url}><button>More details</button></Link>
     </>  
   )
 }
