@@ -45,7 +45,7 @@ public class DataLoader implements ApplicationRunner {
       eventRepository.save(event1);
 
       user1.addEvent(event1);
-      user1.addAppliedJob(job1);
+      user1.addFaveJob(job1);
       userRepository.save(user1);
 
       job1.addEvent(event1);

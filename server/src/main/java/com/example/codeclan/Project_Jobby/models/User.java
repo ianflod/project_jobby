@@ -1,6 +1,6 @@
 package com.example.codeclan.Project_Jobby.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -24,7 +24,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @JsonBackReference
+
+    @JsonIgnoreProperties({"userFave"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -34,7 +35,7 @@ public class User {
     )
     private List<Job> faveJobs;
 
-    @JsonBackReference
+    @JsonIgnoreProperties({"userApplied"})
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -43,7 +44,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)}
     )
     private List<Job> appliedJobs;
-    @JsonBackReference
+
+    @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Event> events;
     @Column(name = "date_of_birth")
