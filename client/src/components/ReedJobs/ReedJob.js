@@ -8,7 +8,13 @@ const ReedJob = ({reedJob}) => {
   }
 
   return (
-    <p>{reedJob.jobTitle}</p>
+    <>
+      <h2>{reedJob.jobTitle}</h2>
+      <p>Location:{reedJob.locationName}</p>
+      <p>Emplyer Name:{reedJob.employerName}</p>
+      <p>Date Posted: {reedJob.date}</p>
+      <button>More details</button>
+    </>  
   )
 }
 
