@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react"
+import React, { useState, useEffect, Fragment, paginate } from "react"
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
 import Search from "../components/search";
 
@@ -10,13 +10,25 @@ const Home = ({ reedJobs }) => {
         setFilteredList(reedJobs)
     }, [reedJobs])
 
-    const filteredJobs = (query) => {
-        const filterJobs = reedJobs.filter(
-            reedJob => {
+    const filterTitle = (query) => {
+        const filterJobs = filteredList.filter(
+            filteredList => {
                 return (
-                    reedJob.jobTitle.toLowerCase()
-                        .includes(query.toLowerCase()) ||
-                    reedJob.locationName.toLowerCase()
+                    filteredList.jobTitle.toLowerCase()
+                        .includes(query.toLowerCase())
+                )
+
+            }
+        )
+        setFilteredList(filterJobs)
+
+    }
+
+    const filterLocation = (query) => {
+        const filterJobs = filteredList.filter(
+            filteredList => {
+                return (
+                    filteredList.locationName.toLowerCase()
                         .includes(query.toLowerCase())
 
                 )
@@ -24,18 +36,26 @@ const Home = ({ reedJobs }) => {
             }
         )
         setFilteredList(filterJobs)
+
     }
+
 
 
 
     return (
         <>
             <Fragment>
-                <Search filteredJobs={filteredJobs} />
+                <Search filterTitle={filterTitle} filterLocation={filterLocation} />
                 <ReedJobsList reedJobs={filteredList} />
             </Fragment>
+
+
         </>
     )
+
+
+
+
 
 }
 
