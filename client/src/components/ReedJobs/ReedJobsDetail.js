@@ -27,17 +27,17 @@ const ReedJobsDetail = ({reedJob, handleSelectedJob}) => {
                 <p>date posted:{reedJob.date}</p>
                 <p>Expiration date:{reedJob.expirationDate}</p>
                 <Link to={url}><button onClick={handleWatchedJobsSelection}>ADD TO WATCHLIST BUTTON</button></Link>
+
             </div>
-            
         )
     }
-    return(
+    return (
         <>
-        <p>Loading...</p>
+            <p>Loading...</p>
         </>
     )
 
-    
+
 }
 
 export default ReedJobsDetail;
