@@ -15,8 +15,12 @@ const Home = ({ reedJobs }) => {
             reedJob => {
                 return (
                     reedJob.jobTitle.toLowerCase()
+                        .includes(query.toLowerCase()) ||
+                    reedJob.locationName.toLowerCase()
                         .includes(query.toLowerCase())
+
                 )
+
             }
         )
         setFilteredList(filterJobs)
