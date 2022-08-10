@@ -1,11 +1,41 @@
-import { AsyncPaginate } from "react-select-async-paginate";
-import React from "react";
+import React, { useState } from "react";
+import ReedJobsList from './ReedJobs/ReedJobsList.js';
+import Scroll from './ReedJobs/Scroll';
 
-const Search = () => {
+const Search = ({ filteredJobs }) => {
+
+  const [searchField, setSearchField] = useState("");
+
+
+  const handleChange = e => {
+    filteredJobs(e.target.value)
+  }
+
+  function reedJobsList() {
+    return (
+      <Scroll>
+        <ReedJobsList reedJobs={reedJobs} />
+      </Scroll>
+    );
+  }
+
   return (
-    <AsyncPaginate 
-    placeholder="Search for a job"
-    />
+    <>
+      <button >
+        <div >
+          <h2>Search jobs</h2>
+        </div>
+        <div >
+          <input
+
+            type="search"
+            placeholder="Search jobs"
+            onChange={handleChange}
+          />
+        </div>
+
+      </button>
+    </>
   )
 }
 
