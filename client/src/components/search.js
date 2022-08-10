@@ -11,13 +11,13 @@ const Search = ({ filteredJobs }) => {
     filteredJobs(e.target.value)
   }
 
-  function reedJobsList() {
-    return (
-      <Scroll>
-        <ReedJobsList reedJobs={reedJobs} />
-      </Scroll>
-    );
-  }
+  // function reedJobsList() {
+  //   return (
+  //     <Scroll>
+  //       <ReedJobsList reedJobs={reedJobs} />
+  //     </Scroll>
+  //   );
+  // }
 
   return (
     <>
