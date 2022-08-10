@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react"
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
-import Search from "../components/Search";
+import Search from "../components/search";
 
 const Home = ({ reedJobs }) => {
 
