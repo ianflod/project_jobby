@@ -11,6 +11,7 @@ import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 const MainContainer = () => {
 
     const [reedJobs, setReedJobs] = useState([]);
+    const [watchedJobs, setWatchedJob] = useState([]);
 
     useEffect(() => {
       getReedJobs()
@@ -22,7 +23,7 @@ const MainContainer = () => {
         .then(res => res.json())
         .then(reedJobsData => setReedJobs(reedJobsData))
       }
-
+//add in get for watchlist
       const findReedJobById = (id) => {
         return reedJobs.find((reedJob) => {
           return reedJob._id === id;
@@ -33,8 +34,18 @@ const MainContainer = () => {
       const ReedJobsDetailWrapper = () => {
         const { id } = useParams();
         let foundReedJob = findReedJobById(id)
-        return <ReedJobsDetail reedJob={foundReedJob}/>;
+        return <ReedJobsDetail reedJob={foundReedJob} handleSelectedJob={handleSelectedJob}/>;
       };
+
+      const handleSelectedJob = function(id) {
+        const copyWatchedJobs = [...watchedJobs]
+        copyWatchedJobs.push(findReedJobById(id));
+        console.log(copyWatchedJobs);
+        setWatchedJob(copyWatchedJobs);
+      };
+
+
+
 
 
     return (
@@ -42,7 +53,7 @@ const MainContainer = () => {
             <NavBar />
             <Routes>
                 <Route path="/dashboard" element={
-                    <DashboardContainer />}
+                    <DashboardContainer watchedJobs={watchedJobs}/>}
                 > </Route>
                 <Route path="/" element={
                     <Home reedJobs={reedJobs}/>}
