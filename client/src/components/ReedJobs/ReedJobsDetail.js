@@ -10,7 +10,6 @@ const ReedJobsDetail = ({reedJob, handleSelectedJob}) => {
 
     const handleWatchedJobsSelection = () => {
         const id = reedJob._id;
-        console.log(id);
         handleSelectedJob(id);
     }
     if(reedJob){

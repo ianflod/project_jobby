@@ -11,7 +11,7 @@ import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 const MainContainer = () => {
 
     const [reedJobs, setReedJobs] = useState([]);
-    const [watchedJobs, setWatchedJob] = useState([]);
+    const [watchedJobs, setWatchedJobs] = useState([]);
 
     useEffect(() => {
       getReedJobs()
@@ -38,10 +38,22 @@ const MainContainer = () => {
       };
 
       const handleSelectedJob = function(id) {
-        const copyWatchedJobs = [...watchedJobs]
-        copyWatchedJobs.push(findReedJobById(id));
-        console.log(copyWatchedJobs);
-        setWatchedJob(copyWatchedJobs);
+        const foundJob = watchedJobs.find(job => job._id === id);
+        if(!foundJob){
+          const copyWatchedJobs = [...watchedJobs]
+          copyWatchedJobs.push(findReedJobById(id));
+          console.log(copyWatchedJobs);
+          setWatchedJobs(copyWatchedJobs); 
+        }
+        // const singleJob = watchedJobs.find(reedJobs._id)
+        // // console.log(singleJob);
+        // if (singleJob = null) {
+            
+         
+        else {
+        return "Job already in watch list "
+        }
+      
       };
 
 

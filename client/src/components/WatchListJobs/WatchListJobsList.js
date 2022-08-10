@@ -4,6 +4,7 @@ import WatchListJob from "./WatchListJob";
 const WatchListJobsList = ({watchedJobs}) => {
 
     const watchJobsElements = watchedJobs.map((watchedJob, index) => {
+        console.log(watchedJob);
     return(    
             <li key={index} className="watch-list-item">
                 <div className="watch-list-component">
