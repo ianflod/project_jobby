@@ -27,13 +27,23 @@ const Search = ({ filteredJobs }) => {
         </div>
         <div >
           <input
-
             type="search"
             placeholder="Search jobs"
             onChange={handleChange}
           />
         </div>
-
+      </button>
+      <button >
+        <div >
+          <h2>Search location</h2>
+        </div>
+        <div >
+          <input
+            type="search"
+            placeholder="Search jobs"
+            onChange={handleChange}
+          />
+        </div>
       </button>
     </>
   )
