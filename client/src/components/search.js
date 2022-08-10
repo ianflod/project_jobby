@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import ReedJobsList from './ReedJobs/ReedJobsList.js';
 import Scroll from './ReedJobs/Scroll';
 
-const Search = ({ filteredJobs }) => {
+const Search = ({ filterTitle, filterLocation }) => {
 
   const [searchField, setSearchField] = useState("");
 
 
-  const handleChange = e => {
-    filteredJobs(e.target.value)
+  const handleTitle = e => {
+    filterTitle(e.target.value)
   }
+
+  const handleLocation = e => {
+    filterLocation(e.target.value)
+  }
+
+
 
   // function reedJobsList() {
   //   return (
@@ -29,7 +35,7 @@ const Search = ({ filteredJobs }) => {
           <input
             type="search"
             placeholder="Search jobs"
-            onChange={handleChange}
+            onChange={handleTitle}
           />
         </div>
       </button>
@@ -40,8 +46,8 @@ const Search = ({ filteredJobs }) => {
         <div >
           <input
             type="search"
-            placeholder="Search jobs"
-            onChange={handleChange}
+            placeholder="Search location"
+            onChange={handleLocation}
           />
         </div>
       </button>
