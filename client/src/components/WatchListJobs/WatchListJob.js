@@ -1,5 +1,5 @@
 import React from "react";
-
+import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 const WatchListJob = ({watchedJob}) => {
 
     if(!watchedJob){
@@ -7,7 +7,10 @@ const WatchListJob = ({watchedJob}) => {
     }
 
     return (
-        <p>{watchedJob.jobTitle}</p>
+        <>
+        <p>{watchedJob.jobTitle}@{watchedJob.employerName}</p>
+        <a href={watchedJob.jobUrl}>Apply Here!</a>
+        </>
     )
 }
 
