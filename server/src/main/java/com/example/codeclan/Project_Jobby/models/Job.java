@@ -29,7 +29,7 @@ public class Job implements Serializable {
     private int maximumSalary;
     @Column(name="date")
     private LocalDate date;
-    @Column(name="job_desc")
+    @Column(name="job_desc", length=6064)
     private String jobDescription;
     @Column(name="no_of_applications")
     private int applications;

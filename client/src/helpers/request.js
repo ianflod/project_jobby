@@ -1,26 +1,26 @@
 class Request {
 
-    get(url){
-        return fetch(url).then((res) => {res.json()})
-    }
+  get(url) {
+    return fetch(url).then((res) => { res.json() })
+  }
 
-    post(url, payload){
-      const serverUrl = "http://localhost:8080" + url;
-      // console.log(payload);
-      // console.log(url);
-        return fetch(serverUrl, {
-          method: "POST",
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(payload)
-        })
-      }
+  post(url, payload) {
+    const serverUrl = "http://localhost:8080" + url;
+    console.log(payload);
+    // console.log(url);
+    return fetch(serverUrl, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+  }
 
-      delete(url) {
-        return fetch(url, {
-          method: "DELETE",
-          headers: {'Content-Type': 'application/json'}
-        })
-      } 
+  delete(url) {
+    return fetch(url, {
+      method: "DELETE",
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
 
 
 }
