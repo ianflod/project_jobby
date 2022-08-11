@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment, paginate } from "react"
+import ReedJob from "../components/ReedJobs/ReedJob";
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
-import Search from "../components/search";
+import Search from "../components/Search";
 
 const Home = ({ reedJobs }) => {
 
@@ -8,53 +9,34 @@ const Home = ({ reedJobs }) => {
 
     useEffect(() => {
         setFilteredList(reedJobs)
-    }, [reedJobs])
+    }, [])
 
-    const filterTitle = (query) => {
-        const filterJobs = filteredList.filter(
-            filteredList => {
-                return (
-                    filteredList.jobTitle.toLowerCase()
-                        .includes(query.toLowerCase())
-                )
+    const filterJobs = (searchTerms) => {
+        let filteredResults = reedJobs
+        if (searchTerms.jobTitle) {
+            filteredResults = reedJobs.filter((reedJob) => {
+                return reedJob.jobTitle.toLowerCase().includes(searchTerms.jobTitle.toLowerCase())
+            })
+        }
 
-            }
-        )
-        setFilteredList(filterJobs)
+        if (searchTerms.location) {
+            filteredResults = filteredResults.filter((reedJob) => {
+                return reedJob.locationName.toLowerCase().includes(searchTerms.location.toLowerCase())
+            })
+        } if (!searchTerms.jobTitle && !searchTerms.location) {
+            filteredResults = reedJobs;
+        }
 
-    }
-
-    const filterLocation = (query) => {
-        const filterJobs = filteredList.filter(
-            filteredList => {
-                return (
-                    filteredList.locationName.toLowerCase()
-                        .includes(query.toLowerCase())
-
-                )
-
-            }
-        )
-        setFilteredList(filterJobs)
+        setFilteredList(filteredResults)
 
     }
-
-
-
 
     return (
-        <>
-            <Fragment>
-                <Search filterTitle={filterTitle} filterLocation={filterLocation} />
-                <ReedJobsList reedJobs={filteredList} />
-            </Fragment>
-
-
-        </>
+        <div>
+            <Search filterJobs={filterJobs} />
+            <ReedJobsList reedJobs={filteredList} />
+        </div>
     )
-
-
-
 
 
 }
