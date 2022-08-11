@@ -1,5 +1,6 @@
 package com.example.codeclan.Project_Jobby.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -25,7 +26,7 @@ public class User {
     private String password;
 
 
-    @JsonIgnoreProperties({"userFave"})
+    @JsonIgnore
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -45,7 +46,7 @@ public class User {
     )
     private List<Job> appliedJobs;
 
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Event> events;
     @Column(name = "date_of_birth")
