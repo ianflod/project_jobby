@@ -100,7 +100,7 @@ const MainContainer = () => {
 
     const foundAppliedForJob = findAppliedForJobById(id)
     // console.log(foundAppliedForJob); undefined
-    return <DashJobsDetails appliedForJob={foundAppliedForJob} />;
+    return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete}/>;
   };
 
   const handleSelectedJob = function (reedJob) {
@@ -133,6 +133,22 @@ const MainContainer = () => {
     }
 
   };
+
+  const handleDelete = (id) => {
+    const jobToDelete = appliedForJobs.find(job => job.id === id);
+    if(jobToDelete) {
+      const request = new Request();
+    const url = '/api/jobs/applied/' + id;
+    request.delete(url)
+    // .then(() => {
+    //   // window.location = '/dashboard';
+    // });
+    } 
+    else {
+      console.log("job not found");
+    }
+    
+  }
 
 
 

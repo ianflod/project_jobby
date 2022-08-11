@@ -16,7 +16,9 @@ class Request {
   }
 
   delete(url) {
-    return fetch(url, {
+    const serverUrl = "http://localhost:8080" + url;
+    console.log(serverUrl);
+    return fetch(serverUrl, {
       method: "DELETE",
       headers: { 'Content-Type': 'application/json' }
     })

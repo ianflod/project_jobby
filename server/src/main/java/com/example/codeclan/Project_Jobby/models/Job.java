@@ -54,7 +54,7 @@ public class Job implements Serializable {
 
 
     @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @JoinTable(
             name = "applied_jobs_users",
             joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
