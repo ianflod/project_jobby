@@ -1,13 +1,24 @@
 import React from "react";
-import DashJobs from "./DashJobs";
+import DashJobs from "./DashJob";
 
-const DashJobsList = () => {
+const DashJobsList = ({appliedForJobs}) => {
+
+    const appliedForJobsElement = appliedForJobs.map((appliedForJob, index) => {
+        return (
+                <li key={index} className="component-item">
+				    <div className="applied-for-jobs-component">
+					    <DashJobs appliedForJob={appliedForJob}/>
+                    </div>
+                </li>
+            )
+    })
+
     return (
-        <>
-        <h3>I am the applied for jobs list</h3>
-        <DashJobs/>
-        </>
+        <ul className='applied-component-list'>
+			{appliedForJobsElement}
+		</ul>
     )
+    
 }
 
 export default DashJobsList;

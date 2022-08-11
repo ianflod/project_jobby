@@ -9,8 +9,7 @@ const ReedJobsDetail = ({reedJob, handleSelectedJob}) => {
     const url = "/";
 
     const handleWatchedJobsSelection = () => {
-        const id = reedJob._id;
-        handleSelectedJob(id);
+        handleSelectedJob(reedJob);
     }
     if(reedJob){
         return(
