@@ -25,7 +25,7 @@ public class JobController {
     public ResponseEntity getWatchedJobs(@PathVariable Long id){
         return new ResponseEntity<>(jobRepository.findById(id), HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PostMapping(value = "/jobs/watched")
     public ResponseEntity<Job> postWatchedJob(@RequestBody Job job){
         jobRepository.save(job);
@@ -68,6 +68,7 @@ public class JobController {
         return new ResponseEntity<>(jobRepository.findById(id), HttpStatus.OK);
     }
 
+    @CrossOrigin
     @PostMapping(value = "/jobs/applied")
     public ResponseEntity<Job> postAppliedJob(@RequestBody Job job){
         jobRepository.save(job);
