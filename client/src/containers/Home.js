@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment, paginate } from "react"
 import ReedJob from "../components/ReedJobs/ReedJob";
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
-import Search from "../components/Search";
+import Search from "../components/search";
 
 const Home = ({ reedJobs }) => {
 
