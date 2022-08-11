@@ -6,7 +6,7 @@ class Request {
 
   post(url, payload) {
     const serverUrl = "http://localhost:8080" + url;
-    console.log(payload);
+    // console.log(payload);
     // console.log(url);
     return fetch(serverUrl, {
       method: "POST",
@@ -17,7 +17,7 @@ class Request {
 
   delete(url) {
     const serverUrl = "http://localhost:8080" + url;
-    console.log(serverUrl);
+    // console.log(serverUrl);
     return fetch(serverUrl, {
       method: "DELETE",
       headers: { 'Content-Type': 'application/json' }
