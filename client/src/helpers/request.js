@@ -6,8 +6,8 @@ class Request {
 
     post(url, payload){
       const serverUrl = "http://localhost:8080" + url;
-      console.log(payload);
-      console.log(url);
+      // console.log(payload);
+      // console.log(url);
         return fetch(serverUrl, {
           method: "POST",
           headers: {'Content-Type': 'application/json'},

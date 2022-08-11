@@ -6,6 +6,7 @@ import Home from "./Home.js";
 import DashJobsForm from "../components/DashBoardJobs/DashJobsForm.js";
 import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 import Request from '../helpers/request.js';
+import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 
 
 
@@ -55,7 +56,7 @@ const MainContainer = () => {
     }
 
     const createWatchedJob = (watchedJob) => {
-      console.log(watchedJob);
+      // console.log(watchedJob);
       if(watchedJob){
 
         const request = new Request();
@@ -79,12 +80,29 @@ const MainContainer = () => {
         })
     }
 
-
       const ReedJobsDetailWrapper = () => {
         const { id } = useParams();
         let foundReedJob = findReedJobById(id)
-        return <ReedJobsDetail reedJob={foundReedJob} handleSelectedJob={handleSelectedJob}/>;
+        return <ReedJobsDetail reedJob={foundReedJob} handleSelectedJob={handleSelectedJob} />;
       };
+
+      const findAppliedForJobById = (id) => {
+            const foundJob = appliedForJobs.find((appliedForJob) => {
+              // console.log(appliedForJob.id);
+              // console.log(id);
+              return appliedForJob.id == id;
+            })
+            console.log(foundJob);
+            return foundJob;
+        };
+
+        const AppliedForJobsDetailWrapper = () => {
+          const { id } = useParams();
+          
+          const foundAppliedForJob = findAppliedForJobById(id)
+          // console.log(foundAppliedForJob); undefined
+          return <DashJobsDetails appliedForJob={foundAppliedForJob}/>;
+        }; 
 
       const handleSelectedJob = function(reedJob) {
         const foundJob = watchedJobs.find(job => job._id === reedJob._id);
@@ -136,6 +154,9 @@ const MainContainer = () => {
                 > </Route>
                 <Route path="/:id" element={
                         <ReedJobsDetailWrapper/>
+                    }/>
+                <Route path="/applied-for-jobs/:id" element={
+                        <AppliedForJobsDetailWrapper/>
                     }/>
             </Routes>
         </Router>

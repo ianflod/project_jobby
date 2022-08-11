@@ -1,5 +1,5 @@
 import React from "react";
-import DashJobs from "./DashJob";
+import DashJob from "./DashJob";
 
 const DashJobsList = ({appliedForJobs}) => {
 
@@ -7,7 +7,7 @@ const DashJobsList = ({appliedForJobs}) => {
         return (
                 <li key={index} className="component-item">
 				    <div className="applied-for-jobs-component">
-					    <DashJobs appliedForJob={appliedForJob}/>
+					    <DashJob appliedForJob={appliedForJob}/>
                     </div>
                 </li>
             )
