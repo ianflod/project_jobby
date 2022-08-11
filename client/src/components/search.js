@@ -1,58 +1,32 @@
 import React, { useState } from "react";
 import ReedJobsList from './ReedJobs/ReedJobsList.js';
-import Scroll from './ReedJobs/Scroll';
+// import Scroll from './ReedJobs/Scroll';
 
-const Search = ({ filterTitle, filterLocation }) => {
+const Search = ({ filterJobs }) => {
 
-  const [searchField, setSearchField] = useState("");
+  const [searchTerms, setSearchTerms] = useState({
+    jobTitle: '',
+    location: ''
+  })
 
-
-  const handleTitle = e => {
-    filterTitle(e.target.value)
+  const handleChange = (e) => {
+    const copySearch = { ...searchTerms }
+    copySearch[e.target.name] = e.target.value
+    setSearchTerms(copySearch)
+    filterJobs(copySearch)
   }
-
-  const handleLocation = e => {
-    filterLocation(e.target.value)
-  }
-
-
-
-  // function reedJobsList() {
-  //   return (
-  //     <Scroll>
-  //       <ReedJobsList reedJobs={reedJobs} />
-  //     </Scroll>
-  //   );
-  // }
 
   return (
-    <>
-      <button >
-        <div >
-          <h2>Search jobs</h2>
-        </div>
-        <div >
-          <input
-            type="search"
-            placeholder="Search jobs"
-            onChange={handleTitle}
-          />
-        </div>
-      </button>
-      <button >
-        <div >
-          <h2>Search location</h2>
-        </div>
-        <div >
-          <input
-            type="search"
-            placeholder="Search location"
-            onChange={handleLocation}
-          />
-        </div>
-      </button>
-    </>
+    <div>
+      {/* <h4>Filter By:</h4> */}
+      <label htmlFor="jobTitle"> Job Title: </label>
+      <input type="text" id="jobTitle" name="jobTitle" value={searchTerms.jobTitle} onChange={handleChange} />
+      <label htmlFor="location">Location: </label>
+      <input type="text" id="location" name="location" value={searchTerms.location} onChange={handleChange} />
+    </div>
   )
+
+
 }
 
-export default Search; 
+export default Search
