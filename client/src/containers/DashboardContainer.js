@@ -6,15 +6,15 @@ import WatchListJob from "../components/WatchListJobs/WatchListJob"
 import WatchListJobsList from "../components/WatchListJobs/WatchListJobsList";
 
 
-const DashboardContainer = ({watchedJobs}) => {
+const DashboardContainer = ({watchedJobs, appliedForJobs}) => {
 
     return (
-        <frameElement>
-            <h2>I am the dashboard container hello</h2>
+        <>
+            <h2>I am the dashboard container</h2>
             <p> <a className="link" href="/application-form">Add New application</a> </p>
-            <DashJobsList />
-            <WatchListJobsList watchedJobs={watchedJobs}/>
-        </frameElement>
+            <DashJobsList appliedForJobs = {appliedForJobs}/>
+            <WatchListJobsList watchedJobs = {watchedJobs}/>
+        </>
     )
 }
 
