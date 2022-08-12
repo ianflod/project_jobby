@@ -24,20 +24,20 @@ public class UserController {
     public ResponseEntity getUsers(@PathVariable Long id){
         return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PostMapping(value = "/users")
     public ResponseEntity<User> postUser(@RequestBody User user) {
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-
+    @CrossOrigin
     @DeleteMapping(value = "/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User found = userRepository.getOne(id);
         userRepository.delete(found);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PutMapping(value = "/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
         User found = userRepository.getOne(id);

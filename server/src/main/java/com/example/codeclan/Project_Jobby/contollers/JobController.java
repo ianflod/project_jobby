@@ -38,7 +38,7 @@ public class JobController {
         jobRepository.delete(found);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PutMapping(value = "/jobs/watched/{id}")
     public ResponseEntity<Job> updateWatchedJob(@PathVariable Long id, @RequestBody Job job) {
         Job found = jobRepository.getOne(id);
@@ -82,7 +82,7 @@ public class JobController {
         jobRepository.delete(found);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
-
+    @CrossOrigin
     @PutMapping(value = "/jobs/applied/{id}")
     public ResponseEntity<Job> updateAppliedJob(@PathVariable Long id, @RequestBody Job job) {
         Job found = jobRepository.getOne(id);
