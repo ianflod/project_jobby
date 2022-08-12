@@ -27,14 +27,14 @@ public class EventController {
         return new ResponseEntity<>(eventRepository.findById(id), HttpStatus.OK);
     }
 
-    // Save New
+    @CrossOrigin
     @PostMapping(value = "/events")
     public ResponseEntity<Event> postEvent(@RequestBody Event event) {
         eventRepository.save(event);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    // Delete One
+    @CrossOrigin
     @DeleteMapping(value = "/events/{id}")
     public ResponseEntity<Event> deleteEvent(@PathVariable Long id) {
         Event found = eventRepository.getOne(id);
@@ -42,7 +42,7 @@ public class EventController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    // Update One
+    @CrossOrigin
     @PutMapping(value = "/events/{id}")
     public ResponseEntity<Event> updateEvent(@PathVariable Long id, @RequestBody Event event) {
         Event found = eventRepository.getOne(id);
