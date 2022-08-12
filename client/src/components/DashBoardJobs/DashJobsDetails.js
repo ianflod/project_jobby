@@ -1,13 +1,20 @@
 import React from "react";
 
-const DashJobsDetails = ({appliedForJob}) => {
-    console.log(appliedForJob);
+const DashJobsDetails = ({appliedForJob, handleDelete}) => {
+
     if (!appliedForJob){
         return "Loading..."
       }
 
+      const onDelete = () => {
+        handleDelete(appliedForJob.id)
+        }
+
     return (
-        <p>{appliedForJob.employerName}</p>
+        <div className = "component">
+            <p>{appliedForJob.employerName}</p>
+            <button onClick={onDelete}>Delete</button>
+        </div>
     )
 }
 
