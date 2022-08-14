@@ -6,7 +6,12 @@ import WatchListJob from "../components/WatchListJobs/WatchListJob"
 import WatchListJobsList from "../components/WatchListJobs/WatchListJobsList";
 
 
+
 const DashboardContainer = ({watchedJobs, appliedForJobs}) => {
+
+    const handleClick = () => {
+        toast('Basic notification!')
+    }
 
     return (
         <>
@@ -14,6 +19,7 @@ const DashboardContainer = ({watchedJobs, appliedForJobs}) => {
             <p> <a className="link" href="/application-form">Add New application</a> </p>
             <DashJobsList appliedForJobs = {appliedForJobs}/>
             <WatchListJobsList watchedJobs = {watchedJobs}/>
+            
         </>
     )
 }

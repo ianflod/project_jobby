@@ -28,6 +28,8 @@ const MainContainer = () => {
     getWatchedJobs()
   }, []);
 
+
+
   const getWatchedJobs = () => {
     fetch("http://localhost:8080/api/jobs/watched")
       .then(res => res.json())
