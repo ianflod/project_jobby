@@ -10,6 +10,7 @@
     "npm": "^8.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^2.1.3",
     "react-select": "^5.4.0",

@@ -5,7 +5,7 @@ const DashJobsList = ({appliedForJobs}) => {
 
     const appliedForJobsElement = appliedForJobs.map((appliedForJob, index) => {
         return (
-                <li key={index} className="component-item">
+                <li key={index} className="applied-for-component-item">
 				    <div className="applied-for-jobs-component">
 					    <DashJob appliedForJob={appliedForJob}/>
                     </div>
