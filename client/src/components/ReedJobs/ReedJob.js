@@ -14,13 +14,13 @@ const ReedJob = ({ reedJob }) => {
   return (
 
     <div className="reedJob">
-
       <h3>
         <a href={url}>{reedJob.jobTitle} </a>
       </h3>
 
       <p>{reedJob.locationName}</p>
       <p>{reedJob.employerName}</p>
+      <p>{reedJob.expirationDate}</p>
       <p>{reedJob.date}</p>
       {/* <Link to={url}><button>More details</button></Link> */}
     </div>
