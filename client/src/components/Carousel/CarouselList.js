@@ -5,15 +5,15 @@ import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 
 import '@brainhubeu/react-carousel/lib/style.css';
 
-const CarouselList = ({featuredJobs}) => {
-    
-    
+const CarouselList = ({ featuredJobs }) => {
+
+
 
     const carouselItemsElement = featuredJobs.filter((featuredJob, index) => index < 40 && index > 20).map((featuredJob, index) => {
-        return(
+        return (
             <li key={index} className="featured-component-item">
                 <div className="featured-jobs-component">
-                    <CarouselItem featuredJob={featuredJob}/>
+                    <CarouselItem featuredJob={featuredJob} />
                 </div>
             </li>
         )
@@ -21,20 +21,20 @@ const CarouselList = ({featuredJobs}) => {
 
 
     console.log(carouselItemsElement)
-    
+
     return (
         <Carousel className="featured-component-list"
-        plugins={[
-            'centered',
-            'infinite',
-            'arrows',
-            {
-              resolve: slidesToShowPlugin,
-              options: {
-               numberOfSlides: 2,
-              },
-            },
-          ]}   
+            plugins={[
+                'centered',
+                'infinite',
+                'arrows',
+                {
+                    resolve: slidesToShowPlugin,
+                    options: {
+                        numberOfSlides: 3,
+                    },
+                },
+            ]}
         >
             {carouselItemsElement}
         </Carousel>
