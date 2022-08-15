@@ -9,9 +9,7 @@ import WatchListJobsList from "../components/WatchListJobs/WatchListJobsList";
 
 const DashboardContainer = ({watchedJobs, appliedForJobs}) => {
 
-    const handleClick = () => {
-        toast('Basic notification!')
-    }
+    
 
     return (
         <>
