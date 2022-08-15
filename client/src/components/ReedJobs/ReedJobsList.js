@@ -16,17 +16,14 @@ const ReedJobsList = ({ reedJobs }) => {
 		<>
 			<div className="reedJobList">
 				<div className="flex-container">
-
 					{reedJobsElements}
 				</div>
+				<div className="flex-container">
+					<button onClick={load_more} className="button">Load More</button>
+				</div>
 			</div>
-			<button onClick={load_more}>Load More</button>
-
-
 		</>
 	)
-
-
 }
 
 export default ReedJobsList;
