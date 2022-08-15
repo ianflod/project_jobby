@@ -7,7 +7,7 @@ import DashJobsForm from "../components/DashBoardJobs/DashJobsForm.js";
 import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 import Request from '../helpers/request.js';
 import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
-
+import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
 
 
 
@@ -80,7 +80,7 @@ const MainContainer = () => {
     }
   }
 
-  
+
 
   const getReedJobs = () => {
     fetch("http://localhost:9000/api/jobs")
@@ -110,6 +110,13 @@ const MainContainer = () => {
     return foundJob;
   };
 
+  const findWatchedJobById = (id) => {
+    const foundJob = watchedJobs.find((watchedJob) => {
+      return watchedJob.id == id;
+    })
+    return foundJob;
+  };
+
   const AppliedForJobsDetailWrapper = () => {
     const { id } = useParams();
 
@@ -118,8 +125,14 @@ const MainContainer = () => {
     return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete} />;
   };
 
+  const WatchedJobsDetailWrapper = () => {
+    const { id } = useParams();
+    const foundWatchedJob = findWatchedJobById(id);
+    return <WatchListJobsDetail watchedJob={foundWatchedJob} handleChange={handleChangeOfJobFromWatchedToApplied} />
+  };
+
   const handleSelectedJob = function (reedJob) {
-    const foundJob = watchedJobs.find(job => job.url == reedJob.url);
+    const foundJob = watchedJobs.find(job => job._id === reedJob._id);
     if (!foundJob) {
       const newJob = {
         employerName: reedJob.employerName,
@@ -127,7 +140,7 @@ const MainContainer = () => {
         locationName: reedJob.locationName,
         minimumSalary: reedJob.minimumSalary,
         maximumSalary: reedJob.maximumSalary,
-        date: new Date(reedJob.date),
+        date: new Date(reedJob.expirationDate),
         jobDescription: reedJob.jobDescription,
         applications: reedJob.applications,
         jobUrl: reedJob.jobUrl,
@@ -163,11 +176,16 @@ const MainContainer = () => {
       console.log("job not found");
     }
 
-  }
+  };
 
-
-
-
+  const handleChangeOfJobFromWatchedToApplied = (id) => {
+    const watchedJob = findWatchedJobById(id);
+    console.log(watchedJob);
+    watchedJob.favorite = false;
+    watchedJob.appliedFor = true;
+    createAppliedJob(watchedJob)
+    //enter delete function for watchedJob
+  };
 
   return (
     <Router>
@@ -177,7 +195,7 @@ const MainContainer = () => {
           <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
         > </Route>
         <Route path="/" element={
-          <Home reedJobs={reedJobs} featuredJobs={featuredJobs}/>}
+          <Home reedJobs={reedJobs} featuredJobs={featuredJobs} />}
         > </Route>
         <Route path="/application-form" element={
           <DashJobsForm onCreate={createAppliedJob} />}
@@ -187,6 +205,9 @@ const MainContainer = () => {
         } />
         <Route path="/applied-for-jobs/:id" element={
           <AppliedForJobsDetailWrapper />
+        } />
+        <Route path="/watched-for-jobs/:id" element={
+          <WatchedJobsDetailWrapper />
         } />
       </Routes>
     </Router>
