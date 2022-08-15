@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
+import './WatchJob.css';
+
 const WatchListJob = ({ watchedJob }) => {
     const url = "/watched-for-jobs/" + watchedJob.id
 
@@ -8,11 +10,13 @@ const WatchListJob = ({ watchedJob }) => {
     }
 
     return (
-        <>
-            <p>{watchedJob.jobTitle}@{watchedJob.employerName}</p>
-            <a href={watchedJob.jobUrl}>Apply Here!</a>
+        <div className='watchedJob'>
+            <h5>{watchedJob.jobTitle}</h5>
+            <p>{watchedJob.employerName}</p>
+            <p>{watchedJob.date}</p>
+            {/* <a href={watchedJob.jobUrl}>Apply Here!</a> */}
             <Link to={url}><button>More details</button></Link>
-        </>
+        </div>
     )
 }
 

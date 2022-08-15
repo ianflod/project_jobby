@@ -1,16 +1,18 @@
-.reedJob{
+.applied-component-list{
+    display: flex;
+}
+
+.dashBoard{
+    display: flex;
+}
+
+.dashJob{
     background-color: rgb(236, 236, 210);
     border-radius: 1rem;
     box-shadow: 0 0 5px 2px rgba(0,0,0,.4);
     margin: 10px;
-    width: 400px;
+    width: 250px;
     padding-left: 10px;
     padding-bottom: 10px;
     padding-top: .05rem;
-    transform: translateY(var(--translate-y, 0));
-}
-
-.reedJob:hover{
-    --translate-y: -2px;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,.6); 
 }

@@ -11,6 +11,9 @@ const NavBar = () => {
                 <li className="navLink">
                     <Link to = "/dashboard">DashBoard</Link>
                 </li>
+                <li className="navLink">
+                    <Link to ="/application-form">Add New Application</Link>
+                </li>
             </ul>
         </header>
     )

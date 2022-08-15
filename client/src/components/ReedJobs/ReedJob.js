@@ -18,7 +18,7 @@ const ReedJob = ({reedJob}) => {
       <p>Location:{reedJob.locationName}</p>
       <p>Empolyer Name:{reedJob.employerName}</p>
       <p>Date Posted: {reedJob.date}</p>
-      {/* <Link to = {url}><button>More details</button></Link> */}
+      <Link to = {url}><button>More details</button></Link>
     </div>  
   )
 }
