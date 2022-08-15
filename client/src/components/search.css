@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.wrap {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.wrap {
+    width: 100%;
+    background-color: darkblue;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.wrap:focus {
+    color: #00B4CC;
+}
+
+
+
+/*Resize the wrap to see the search bar change!*/
+
+#location {
+    margin-left: 10px;
+}
+
+#search {
+    height: 200px;
+}
+
+.centre {
+    margin: auto;
+}

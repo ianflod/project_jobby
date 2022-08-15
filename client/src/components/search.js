@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReedJobsList from './ReedJobs/ReedJobsList.js';
+import "./search.css"
 // import Scroll from './ReedJobs/Scroll';
 
 const Search = ({ filterJobs }) => {
@@ -17,12 +18,14 @@ const Search = ({ filterJobs }) => {
   }
 
   return (
-    <div>
+    <div className="wrap">
       {/* <h4>Filter By:</h4> */}
-      <label htmlFor="jobTitle"> Job Title: </label>
-      <input type="text" id="jobTitle" name="jobTitle" value={searchTerms.jobTitle} onChange={handleChange} />
-      <label htmlFor="location">Location: </label>
-      <input type="text" id="location" name="location" value={searchTerms.location} onChange={handleChange} />
+      <div className="centre">
+        <label htmlFor="jobTitle"> Job Title </label>
+        <input type="text" className="search" name="jobTitle" placeholder="Job Role" value={searchTerms.jobTitle} onChange={handleChange} />
+        <label id="location" htmlFor="location">Location </label>
+        <input type="text" className="search" name="location" placeholder="Location" value={searchTerms.location} onChange={handleChange} />
+      </div>
     </div>
   )
 

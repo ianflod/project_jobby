@@ -24,7 +24,6 @@ const WatchListJobsDetail = ({ watchedJob, handleChange }) => {
                 <p>date posted:{watchedJob.date}</p>
                 <p>Expiration date:{watchedJob.expirationDate}</p>
                 <Link to={url}><button onClick={handleChangeOfState}>Set to Applied Job</button></Link>
-
             </div>
         )
     }
