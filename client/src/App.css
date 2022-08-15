@@ -1,10 +1,11 @@
 /* NavBar */
 .ul-navbar {
   list-style-type: none;
-  margin: 0;
+  margin-bottom: 10px;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #52b6de;
+
 }
 
 li {
@@ -24,15 +25,23 @@ li a:hover {
   background-color: #111;
 }
 
+h3 a {
+  text-decoration: none;
+  color: black;
+
+}
 
 /* Search bar */
 
 .search-bar {
-  padding-top: 30px;
-
+  padding: 2%;
+  display: flex;
+  justify-content: center;
 }
 
-
+.background {
+  background-color: white;
+}
 
 
 
