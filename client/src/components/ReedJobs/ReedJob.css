@@ -1,7 +1,7 @@
-.reedJob{
-    background-color: rgb(236, 236, 210);
-    border-radius: 1rem;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,.4);
+.reedJob {
+
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgba(130, 128, 128, 0.4);
     margin: 10px;
     width: 400px;
     padding-left: 10px;
@@ -10,7 +10,16 @@
     transform: translateY(var(--translate-y, 0));
 }
 
-.reedJob:hover{
+.reedJob:hover {
     --translate-y: -2px;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,.6); 
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .6);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 50px;
+
+
 }

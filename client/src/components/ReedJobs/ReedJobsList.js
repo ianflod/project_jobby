@@ -3,9 +3,9 @@ import ReedJob from './ReedJob.js';
 
 const ReedJobsList = ({ reedJobs }) => {
 
-	const [paginate, setpaginate] = useState(5);
+	const [paginate, setpaginate] = useState(12);
 	const load_more = () => {
-		setpaginate((prevValue) => prevValue + 5);
+		setpaginate((prevValue) => prevValue + 12);
 	};
 
 
@@ -15,10 +15,11 @@ const ReedJobsList = ({ reedJobs }) => {
 	return (
 		<>
 			<div className="reedJobList">
+				<div className="flex-container">
 
-				{reedJobsElements}
+					{reedJobsElements}
+				</div>
 			</div>
-
 			<button onClick={load_more}>Load More</button>
 
 
