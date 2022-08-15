@@ -14,7 +14,7 @@ const ReedJobsList = ({ reedJobs }) => {
 		((reedJob, index) => <ReedJob reedJob={reedJob} key={index} />);
 	return (
 		<>
-			<div>
+			<div className="reedJobList">
 
 				{reedJobsElements}
 			</div>
