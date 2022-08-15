@@ -80,7 +80,7 @@ const MainContainer = () => {
     }
   }
 
-  
+
 
   const getReedJobs = () => {
     fetch("http://localhost:9000/api/jobs")
@@ -177,7 +177,7 @@ const MainContainer = () => {
           <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
         > </Route>
         <Route path="/" element={
-          <Home reedJobs={reedJobs} featuredJobs={featuredJobs}/>}
+          <Home reedJobs={reedJobs} featuredJobs={featuredJobs} />}
         > </Route>
         <Route path="/application-form" element={
           <DashJobsForm onCreate={createAppliedJob} />}
@@ -191,7 +191,6 @@ const MainContainer = () => {
       </Routes>
     </Router>
   )
-
 }
 
 export default MainContainer;

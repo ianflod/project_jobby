@@ -10,7 +10,7 @@ const Home = ({ reedJobs, featuredJobs }) => {
 
     useEffect(() => {
         setFilteredList(reedJobs)
-    }, [])
+    }, [reedJobs])
 
     const filterJobs = (searchTerms) => {
         let filteredResults = reedJobs
@@ -34,9 +34,8 @@ const Home = ({ reedJobs, featuredJobs }) => {
 
     return (
         <div>
-
-            <CarouselList featuredJobs={featuredJobs} />
             <Search filterJobs={filterJobs} />
+            <CarouselList featuredJobs={featuredJobs} />
             <ReedJobsList reedJobs={filteredList} />
         </div>
     )

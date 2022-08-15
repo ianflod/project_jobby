@@ -7,9 +7,11 @@ import React from 'react';
 function App() {
 
   return (
-
-    <MainContainer />
-
+    <>
+      <div className='background'>
+        <MainContainer />
+      </div>
+    </>
   );
 }
 
