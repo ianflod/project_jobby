@@ -23,7 +23,8 @@ const WatchListJobsDetail = ({ watchedJob, handleChange }) => {
                 {watchedJob.maximumSalary ? <p>£{watchedJob.maximumSalary}</p> : null}
                 <p>date posted:{watchedJob.date}</p>
                 <p>Expiration date:{watchedJob.expirationDate}</p>
-                <Link to={url}><button onClick={handleChangeOfState}>Set to Applied Job</button></Link>
+                {/* <Link to={url}><button onClick={handleChangeOfState}>Set to Applied Job</button></Link> */}
+                <a href={watchedJob.jobUrl} target="_blank"><button onClick={handleChangeOfState}>Apply for this Job</button></a>
 
             </div>
         )
