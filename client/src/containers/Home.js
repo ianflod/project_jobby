@@ -2,8 +2,9 @@ import React, { useState, useEffect, Fragment, paginate } from "react"
 import ReedJob from "../components/ReedJobs/ReedJob";
 import ReedJobsList from "../components/ReedJobs/ReedJobsList"
 import Search from "../components/search";
+import CarouselList from "../components/Carousel/CarouselList"
 
-const Home = ({ reedJobs }) => {
+const Home = ({ reedJobs, featuredJobs }) => {
 
     const [filteredList, setFilteredList] = useState([])
 
@@ -34,6 +35,7 @@ const Home = ({ reedJobs }) => {
     return (
         <div>
             <Search filterJobs={filterJobs} />
+            <CarouselList featuredJobs={featuredJobs}/>
             <ReedJobsList reedJobs={filteredList} />
         </div>
     )
