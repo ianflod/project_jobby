@@ -1,93 +1,104 @@
 import React, { useState } from "react";
 
 import { Form, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 
 
-const Login = ({ users, getLoggedInUser }) => {
-
-
-    const [email, setEmail] = useState("");
-
-    const [password, setPassword] = useState("");
-
-    const validateForm = () => {
-
-        return email.length > 0 && password.length > 0;
-
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(email)
-        const userFind = users.find(user => user.password === password);
-        console.log(userFind);
-        if (userFind) {
-            getLoggedInUser(userFind)
-        }
-        else {
-            console.log("error wrong details");
-        }
+const Login = ({ users, getLoggedInUser, loggedInUser }) => {
+    if (loggedInUser.email === null) {
+        return (
+            <>
+                <h2>You are already logged in {loggedInUser.firstName}</h2>
+                <p>Would you like to logout?</p>
+                <Link to="/logout"></Link>
+            </>
+        );
 
     }
+    else {
+        const [email, setEmail] = useState("");
+
+        const [password, setPassword] = useState("");
+
+        const validateForm = () => {
+
+            return email.length > 0 && password.length > 0;
+
+        }
+
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            console.log(email)
+            const userFind = users.find(user => user.password === password);
+            console.log(userFind);
+            if (userFind) {
+                getLoggedInUser(userFind)
+            }
+            else {
+                console.log("error wrong details");
+            }
+
+        }
 
 
 
 
 
-    return (
+        return (
 
-        <div className="Login">
+            <div className="Login">
 
-            <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit}>
 
-                <Form.Group size="lg" controlId="email">
+                    <Form.Group size="lg" controlId="email">
 
-                    <Form.Label>Email</Form.Label>
+                        <Form.Label>Email</Form.Label>
 
-                    <Form.Control
+                        <Form.Control
 
-                        autoFocus
+                            autoFocus
 
-                        type="email"
+                            type="email"
 
-                        value={email}
+                            value={email}
 
-                        onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
 
-                    />
+                        />
 
-                </Form.Group>
+                    </Form.Group>
 
-                <Form.Group size="lg" controlId="password">
+                    <Form.Group size="lg" controlId="password">
 
-                    <Form.Label>Password</Form.Label>
+                        <Form.Label>Password</Form.Label>
 
-                    <Form.Control
+                        <Form.Control
 
-                        type="password"
+                            type="password"
 
-                        value={password}
+                            value={password}
 
-                        onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
 
-                    />
+                        />
 
-                </Form.Group>
+                    </Form.Group>
 
-                <Button block size="lg" type="submit" disabled={!validateForm()}>
+                    <Button block size="lg" type="submit" disabled={!validateForm()}>
 
-                    Login
+                        Login
 
-                </Button>
+                    </Button>
 
-            </Form>
+                </Form>
 
-        </div>
+            </div>
 
-    );
+        );
 
+    }
 }
 
 export default Login;
