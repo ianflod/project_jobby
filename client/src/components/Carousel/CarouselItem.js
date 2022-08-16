@@ -15,6 +15,8 @@ const CarouselItem = ({ featuredJob }) => {
 
     return (
         <>
+
+
             <div className="carousel-text">
                 <h4>
                     <a href={url}>{featuredJob.jobTitle}</a>
@@ -22,6 +24,7 @@ const CarouselItem = ({ featuredJob }) => {
                 <p>{featuredJob.employerName}</p>
                 {/* <Link to={url}><button>More details</button></Link> */}
             </div>
+
         </>
     )
 
