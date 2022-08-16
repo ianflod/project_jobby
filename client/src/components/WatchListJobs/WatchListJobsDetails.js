@@ -25,7 +25,7 @@ const WatchListJobsDetail = ({ watchedJob, handleChange, handleDelete }) => {
                     <p>Employee Name: {watchedJob.employerName}</p>
                     <p>Location: {watchedJob.locationName}</p>
                     <p>Description: {watchedJob.jobDescription}</p>
-                    <a href={watchedJob.jobUrl}>Link to Advert</a>
+                    <a href={watchedJob.jobUrl} target="_blank">Link to Advert</a>
                     {watchedJob.minimumSalary ? <p>£{watchedJob.minimumSalary}</p> : null}
                     {watchedJob.maximumSalary ? <p>£{watchedJob.maximumSalary}</p> : null}
                     <p>date posted:{watchedJob.date}</p>
