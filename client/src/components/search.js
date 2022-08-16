@@ -17,19 +17,25 @@ const Search = ({ filterJobs }) => {
   }
 
   return (
-    <div className="search-container">
-      <div className="search-bar">
-        {/* <h4>Filter By:</h4> */}
-        <div className="search-label">
+    <div>
+      <div className="search-container">
 
-          <label htmlFor="jobTitle"> Job Title: </label>
-          <input type="text" placeholder="Job Title" id="jobTitle" name="jobTitle" value={searchTerms.jobTitle} onChange={handleChange} />
-          <br></br>
+        <div className="logo">
+          <img src="/images/logo_transparent_background.png" />
         </div>
+        <div></div>
+        <div className="search-bar">
 
-        <div className="search-label">
-          <label htmlFor="location">Location: </label>
-          <input type="text" placeholder="Location" id="location" name="location" value={searchTerms.location} onChange={handleChange} />
+
+          <div className="search-label">
+            <label htmlFor="jobTitle"> Job Title: </label>
+            <input type="text" placeholder="Job Title" id="jobTitle" name="jobTitle" value={searchTerms.jobTitle} onChange={handleChange} />
+            <br></br>
+          </div>
+          <div className="search-label">
+            <label htmlFor="location">Location: </label>
+            <input type="text" placeholder="Location" id="location" name="location" value={searchTerms.location} onChange={handleChange} />
+          </div>
         </div>
       </div>
     </div>
