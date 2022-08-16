@@ -47,15 +47,18 @@ h3 a {
   background-image: url("./images/dogs_header.jpg");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  /* background-position: center; */
+  background-position: bottom;
   background-position-x: 80%;
+
+
   padding-left: 100px;
 
   min-height: 500px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  /* background-color: white; */
   background-color: #AADAE6;
   margin-bottom: 2%;
 
@@ -70,6 +73,12 @@ h3 a {
 
 .background {
   background-color: white;
+}
+
+img {
+  float: left;
+  display: flex;
+  width: 300px;
 }
 
 /* CSS */

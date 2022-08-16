@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 
 
-const WatchListJobsDetail = ({ watchedJob, handleChange }) => {
+const WatchListJobsDetail = ({ watchedJob, handleChange, handleDelete }) => {
 
 
     const url = "/dashboard";
@@ -10,6 +10,11 @@ const WatchListJobsDetail = ({ watchedJob, handleChange }) => {
     const handleChangeOfState = () => {
         handleChange(watchedJob.id);
     }
+
+    const onDelete = () => {
+        handleDelete(watchedJob.id)
+    }
+
     if (watchedJob) {
         return (
 
@@ -25,6 +30,7 @@ const WatchListJobsDetail = ({ watchedJob, handleChange }) => {
                 <p>Expiration date:{watchedJob.expirationDate}</p>
                 {/* <Link to={url}><button onClick={handleChangeOfState}>Set to Applied Job</button></Link> */}
                 <a href={watchedJob.jobUrl} target="_blank"><button onClick={handleChangeOfState}>Apply for this Job</button></a>
+                {/* <button onClick={onDelete}>Delete</button> */}
 
             </div>
         )
