@@ -1,4 +1,5 @@
 import React, { useEffect, useState }  from "react";
+import Header from "../Header";
 
 const DashJobsUpdateForm = ({onUpdate, appliedForJob, onCreate}) => {
 
@@ -50,7 +51,8 @@ const DashJobsUpdateForm = ({onUpdate, appliedForJob, onCreate}) => {
 
 
     return (
-        <>
+        <div>
+            <Header/>
             <form onSubmit={handleSubmit} className="form">    {/* Form to be reStyled */}
                 <input type="text" placeholder="Employer Name" name="employerName" onChange={handleChange} value={appliedJobsState.employerName}/>
                 <input type="text" placeholder="Job Title" name="jobTitle" onChange={handleChange} value={appliedJobsState.jobTitle}/>
@@ -61,7 +63,7 @@ const DashJobsUpdateForm = ({onUpdate, appliedForJob, onCreate}) => {
                 <input type="text" placeholder="Job Url" name="jobUrl" onChange={handleChange} value={appliedJobsState.jobUrl}/>
                 <button type="submit">Update</button>
             </form>
-        </>
+        </div>
     )
 }
 
