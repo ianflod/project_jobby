@@ -21,24 +21,30 @@ const CarouselList = ({ featuredJobs }) => {
     })
 
 
-    console.log(carouselItemsElement)
+    // console.log(carouselItemsElement)
 
     return (
-        <Carousel className="featured-component-list"
-            plugins={[
-                'centered',
-                'infinite',
-                'arrows',
-                {
-                    resolve: slidesToShowPlugin,
-                    options: {
-                        numberOfSlides: 3,
+        <>
+            <div className="featured">
+                <h2>Featured jobs </h2>
+            </div>
+
+            <Carousel className="featured-component-list"
+                plugins={[
+                    'centered',
+                    'infinite',
+                    'arrows',
+                    {
+                        resolve: slidesToShowPlugin,
+                        options: {
+                            numberOfSlides: 3,
+                        },
                     },
-                },
-            ]}
-        >
-            {carouselItemsElement}
-        </Carousel>
+                ]}
+            >
+                {carouselItemsElement}
+            </Carousel>
+        </>
     )
 }
 export default CarouselList;
