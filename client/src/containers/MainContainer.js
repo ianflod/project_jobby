@@ -31,6 +31,11 @@ const MainContainer = () => {
   const [appliedForJobs, setAppliedForJobs] = useState([]);
   const [featuredJobs, setFeaturedJobs] = useState([]);
   const [events, setEvents] = useState([]);
+  const [jobEvents, setJobEvents] = useState(() => {
+    const saved = localStorage.getItem("jobEvents");
+    const initialValue = JSON.parse(saved);
+    return initialValue || []
+  })
 
 
 
@@ -78,6 +83,14 @@ const MainContainer = () => {
     setLoggedInUser(JSON.parse(window.localStorage.getItem('loggedInUser')))
   }, [])
 
+  useEffect(() => {
+    window.localStorage.setItem("jobEvents", JSON.stringify(jobEvents))
+  }, [jobEvents])
+
+  useEffect(() => {
+    setJobEvents(JSON.parse(window.localStorage.getItem("jobEvents")))
+  }, [])
+
   const getAllUsers = () => {
     fetch("http://localhost:8080/api/users")
       .then(res => res.json())
@@ -110,6 +123,8 @@ const MainContainer = () => {
     getAppliedForJobs();
   }
 
+
+
   const createAppliedJob = (appliedJob) => {
     // console.log("create applied job called", appliedJob);
     if (appliedJob) {
@@ -122,18 +137,21 @@ const MainContainer = () => {
     }
   }
 
-    const createEvent = (event, appliedJob) => {
-      console.log(appliedJob);
-      appliedForJobs.pop(appliedJob);
-      if(Object.keys(appliedJob).indexOf("events") == -1){
-          appliedJob["events"] = []
-      }
-      const copyEvents = [...appliedJob.events]
-      copyEvents.push(event)
-      appliedJob.events = copyEvents
-      let jobToUpdate = findAppliedForJobById(appliedJob.id)
-      jobToUpdate = appliedJob;
-      setAppliedForJobs([...appliedForJobs, jobToUpdate])
+  const createEvent = (event, appliedJob) => {
+    console.log(appliedJob);
+    appliedForJobs.pop(appliedJob);
+    if (Object.keys(appliedJob).indexOf("events") == -1) {
+      appliedJob["events"] = []
+    }
+    const copyEvents = [...appliedJob.events]
+    copyEvents.push(event)
+    appliedJob.events = copyEvents
+    let jobToUpdate = findAppliedForJobById(appliedJob.id)
+    jobToUpdate = appliedJob;
+    setAppliedForJobs([...appliedForJobs, jobToUpdate])
+    const copyJobEvents = [...jobEvents, event]
+    setJobEvents(copyJobEvents)
+    window.location = "/applied-for-jobs/" + appliedJob.id;
   }
 
   const createWatchedJob = (watchedJob) => {
@@ -188,7 +206,7 @@ const MainContainer = () => {
 
     const foundAppliedForJob = findAppliedForJobById(id)
     // console.log(foundAppliedForJob); undefined
-    return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete} events={events}/>;
+    return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete} events={jobEvents} />;
   };
 
   const WatchedJobsDetailWrapper = () => {
@@ -276,14 +294,14 @@ const MainContainer = () => {
     window.localStorage.removeItem("loggedInUser")
   }
 
-const EventsCreateFormWrapper = () => {
-  const { id } = useParams();
-  const foundAppliedForJob = findAppliedForJobById(id)
-  console.log(foundAppliedForJob)
-  return <EventJobsCreateForm createEvent={createEvent} appliedForJob={foundAppliedForJob}/>
-}
+  const EventsCreateFormWrapper = () => {
+    const { id } = useParams();
+    const foundAppliedForJob = findAppliedForJobById(id)
+    console.log(foundAppliedForJob)
+    return <EventJobsCreateForm createEvent={createEvent} appliedForJob={foundAppliedForJob} />
+  }
 
- 
+
   return (
     <Router>
       <NavBar loggedInUser={loggedInUser} logoutUser={logoutUser} />
@@ -302,11 +320,11 @@ const EventsCreateFormWrapper = () => {
         > </Route>
         <Route path="/applied-for-jobs/:id/edit" element={
 
-           <DashJobsUpdateFormWrapper/> 
-        }/>
-         <Route path="/applied-for-jobs/:id/create-event" element={
-           <EventsCreateFormWrapper/> 
-        }/>        
+          <DashJobsUpdateFormWrapper />
+        } />
+        <Route path="/applied-for-jobs/:id/create-event" element={
+          <EventsCreateFormWrapper />
+        } />
         <Route path="/:id" element={
           <ReedJobsDetailWrapper />
         } />
