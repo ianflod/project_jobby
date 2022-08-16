@@ -8,6 +8,7 @@ import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 import Request from '../helpers/request.js';
 import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
+import DashJobsUpdateForm from "../components/DashBoardJobs/DashJobsUpdateForm.js";
 
 
 
@@ -70,7 +71,6 @@ const MainContainer = () => {
   const createWatchedJob = (watchedJob) => {
     // console.log(watchedJob);
     if (watchedJob) {
-
       const request = new Request();
       request.post("/api/jobs/watched", watchedJob)
         .then(() => window.location = '/dashboard');
@@ -79,8 +79,6 @@ const MainContainer = () => {
       console.log("no watched job");
     }
   }
-
-
 
   const getReedJobs = () => {
     fetch("http://localhost:9000/api/jobs")
@@ -106,7 +104,7 @@ const MainContainer = () => {
       // console.log(id);
       return appliedForJob.id == id;
     })
-    console.log(foundJob);
+    // console.log(foundJob);
     return foundJob;
   };
 
@@ -180,12 +178,29 @@ const MainContainer = () => {
 
   const handleChangeOfJobFromWatchedToApplied = (id) => {
     const watchedJob = findWatchedJobById(id);
-    console.log(watchedJob);
+    // console.log(watchedJob);
     watchedJob.favorite = false;
     watchedJob.appliedFor = true;
     createAppliedJob(watchedJob)
     //enter delete function for watchedJob
   };
+
+
+  const handleUpdate = (appliedForJob) => {
+    console.log(appliedForJob);
+    const request = new Request();
+    request.put('/api/jobs/applied/'+ appliedForJob.id, appliedForJob)
+    .then(()=> {
+      console.log(appliedForJob.id)
+      window.location = '/applied-for-jobs/' + appliedForJob.id;
+    })
+  }
+
+  const DashJobsUpdateFormWrapper= () => {
+    const { id } = useParams();
+    let foundAppliedForJob = findAppliedForJobById(id)
+    return <DashJobsUpdateForm appliedForJob={foundAppliedForJob}  onUpdate={handleUpdate} onCreate={createAppliedJob}/>
+  }
 
   return (
     <Router>
@@ -200,6 +215,9 @@ const MainContainer = () => {
         <Route path="/application-form" element={
           <DashJobsForm onCreate={createAppliedJob} />}
         > </Route>
+        <Route path="/applied-for-jobs/:id/edit" element={
+           <DashJobsUpdateFormWrapper/> 
+        }/>
         <Route path="/:id" element={
           <ReedJobsDetailWrapper />
         } />
@@ -212,6 +230,7 @@ const MainContainer = () => {
       </Routes>
     </Router>
   )
+
 }
 
 export default MainContainer;

@@ -24,6 +24,17 @@ class Request {
     })
   }
 
+  put(url, payload) {
+    const serverUrl = "http://localhost:8080" + url;
+    // console.log(payload);
+    // console.log(url);
+    return fetch(serverUrl, {
+      method: "PUT",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+  }
+
 
 }
 
