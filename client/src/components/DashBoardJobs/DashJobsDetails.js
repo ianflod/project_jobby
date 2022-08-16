@@ -1,4 +1,9 @@
 import React from "react";
+
+import Header from "../Header";
+
+
+
 import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 import EventsList from './EventsList.js'
 
@@ -15,11 +20,13 @@ const DashJobsDetails = ({appliedForJob, handleDelete, events}) => {
 
     
 
-      const onDelete = () => {
+
+    const onDelete = () => {
         handleDelete(appliedForJob.id)
-        }
+    }
 
     return (
+
         <>
             <div className = "component">
                 <p>{appliedForJob.employerName}</p>

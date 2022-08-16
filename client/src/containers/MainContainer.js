@@ -8,12 +8,24 @@ import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 import Request from '../helpers/request.js';
 import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
+import Login from "./Login.js";
 import DashJobsUpdateForm from "../components/DashBoardJobs/DashJobsUpdateForm.js";
+
 import EventJobsCreateForm from "../components/DashBoardJobs/EventJobsCreateForm.js"
+
+import Logout from "./Logout.js";
+
+
+
 
 
 const MainContainer = () => {
-
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    const saved = localStorage.getItem("loggedInUser");
+    const initialValue = JSON.parse(saved);
+    return initialValue || {}
+  });
+  const [users, setUsers] = useState([]);
   const [reedJobs, setReedJobs] = useState([]);
   const [watchedJobs, setWatchedJobs] = useState([]);
   const [appliedForJobs, setAppliedForJobs] = useState([]);
@@ -44,12 +56,33 @@ const MainContainer = () => {
 
 
 
+
   const getEvents = () => {
     fetch("http://localhost:8080/api/events")
       .then(res => res.json())
       .then(eventsData => setEvents(eventsData))
   }
 
+
+
+
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+  }, [loggedInUser])
+
+  useEffect(() => {
+    setLoggedInUser(JSON.parse(window.localStorage.getItem('loggedInUser')))
+  }, [])
+
+  const getAllUsers = () => {
+    fetch("http://localhost:8080/api/users")
+      .then(res => res.json())
+      .then(allUsers => setUsers(allUsers));
+  }
 
 
   const getFeaturedJobs = () => {
@@ -69,6 +102,12 @@ const MainContainer = () => {
     fetch("http://localhost:8080/api/jobs/applied")
       .then(res => res.json())
       .then(appliedForJobsData => setAppliedForJobs(appliedForJobsData))
+  }
+
+  const getLoggedInUser = (userToLogIn) => {
+    setLoggedInUser(userToLogIn);
+    getWatchedJobs();
+    getAppliedForJobs();
   }
 
   const createAppliedJob = (appliedJob) => {
@@ -219,17 +258,22 @@ const MainContainer = () => {
   const handleUpdate = (appliedForJob) => {
     console.log(appliedForJob);
     const request = new Request();
-    request.put('/api/jobs/applied/'+ appliedForJob.id, appliedForJob)
-    .then(()=> {
-      console.log(appliedForJob.id)
-      window.location = '/applied-for-jobs/' + appliedForJob.id;
-    })
+    request.put('/api/jobs/applied/' + appliedForJob.id, appliedForJob)
+      .then(() => {
+        console.log(appliedForJob.id)
+        window.location = '/applied-for-jobs/' + appliedForJob.id;
+      })
   }
 
-  const DashJobsUpdateFormWrapper= () => {
+  const DashJobsUpdateFormWrapper = () => {
     const { id } = useParams();
     let foundAppliedForJob = findAppliedForJobById(id)
-    return <DashJobsUpdateForm appliedForJob={foundAppliedForJob}  onUpdate={handleUpdate} onCreate={createAppliedJob}/>
+    return <DashJobsUpdateForm appliedForJob={foundAppliedForJob} onUpdate={handleUpdate} onCreate={createAppliedJob} />
+  }
+
+  const logoutUser = () => {
+
+    window.localStorage.removeItem("loggedInUser")
   }
 
 const EventsCreateFormWrapper = () => {
@@ -242,23 +286,27 @@ const EventsCreateFormWrapper = () => {
  
   return (
     <Router>
-      <NavBar />
+      <NavBar loggedInUser={loggedInUser} logoutUser={logoutUser} />
+      {loggedInUser.email == null ? <h1>Welcome to Joable</h1> : <h1>Welcome Back {loggedInUser.firstName}</h1>}
       <Routes>
         <Route path="/dashboard" element={
-          <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
+          loggedInUser.email == null ?
+            <Login users={users} getLoggedInUser={getLoggedInUser} loggedInUser={loggedInUser} /> : <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
         > </Route>
         <Route path="/" element={
           <Home reedJobs={reedJobs} featuredJobs={featuredJobs} />}
         > </Route>
         <Route path="/application-form" element={
-          <DashJobsForm onCreate={createAppliedJob} />}
+          loggedInUser.email == null ?
+            <Login users={users} getLoggedInUser={getLoggedInUser} loggedInUser={loggedInUser} /> : <DashJobsForm onCreate={createAppliedJob} />}
         > </Route>
         <Route path="/applied-for-jobs/:id/edit" element={
+
            <DashJobsUpdateFormWrapper/> 
         }/>
          <Route path="/applied-for-jobs/:id/create-event" element={
            <EventsCreateFormWrapper/> 
-        }/>
+        }/>        
         <Route path="/:id" element={
           <ReedJobsDetailWrapper />
         } />
@@ -268,6 +316,11 @@ const EventsCreateFormWrapper = () => {
         <Route path="/watched-for-jobs/:id" element={
           <WatchedJobsDetailWrapper />
         } />
+        <Route path="/login" element={
+          <Login users={users} getLoggedInUser={getLoggedInUser} loggedInUser={loggedInUser} />
+        } />
+        <Route path="/logout" element={<Logout />}
+        />
       </Routes>
     </Router>
   )
