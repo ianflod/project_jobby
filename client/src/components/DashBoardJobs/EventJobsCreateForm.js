@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState }  from "react";
+import Header from "../Header";
+
 
 const EventJobsCreateForm = ({ createEvent, appliedForJob }) => {
 
@@ -29,7 +32,8 @@ const EventJobsCreateForm = ({ createEvent, appliedForJob }) => {
 
 
     return (
-        <>
+        <div>
+            <Header/>
             <form onSubmit={handleSubmit} className="form">    {/* Form to be reStyled */}
                 <input type="text" placeholder="comments" name="comments" onChange={handleChange} value={eventState.comments} />
                 <select onChange={handleChange} className="select" name="eventType">
@@ -41,7 +45,7 @@ const EventJobsCreateForm = ({ createEvent, appliedForJob }) => {
                 <input type="date" name="date" onChange={handleChange} value={eventState.date} />
                 <button type="submit">Update</button>
             </form>
-        </>
+        </div>
     )
 }
 
