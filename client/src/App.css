@@ -1,4 +1,9 @@
 /* NavBar */
+h1 {
+  padding-left: 5%;
+}
+
+
 .ul-navbar {
   list-style-type: none;
   margin-bottom: 10px;
@@ -36,8 +41,9 @@ h3 a {
 
 .search-bar {
   padding: 2%;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
+  width: 300px;
   border-radius: 10px;
   /* border-color: ghostwhite; */
   background-color: ghostwhite;
@@ -54,9 +60,9 @@ h3 a {
 
   padding-left: 100px;
   min-height: 500px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  /* align-items: center; */
   /* background-color: white; */
   background-color: #AADAE6;
   margin-bottom: 2%;
@@ -64,7 +70,7 @@ h3 a {
 }
 
 .search-label {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   padding-right: 30px;
 }
 
@@ -75,9 +81,11 @@ h3 a {
 }
 
 img {
-  float: left;
-  display: flex;
+  /* float: left; */
+  /* display: flex; */
+  padding-top: 6%;
   width: 300px;
+  margin: auto;
 }
 
 /* CSS */
