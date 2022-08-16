@@ -168,7 +168,10 @@ const MainContainer = () => {
       const request = new Request();
       const url = '/api/jobs/applied/' + id;
       request.delete(url)
+
+
         .then(() => window.location = '/dashboard');
+
     }
     else {
       console.log("job not found");
