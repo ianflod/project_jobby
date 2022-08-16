@@ -29,7 +29,20 @@ li a:hover {
 h3 a {
   text-decoration: none;
   color: black;
+}
 
+.banner{
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-position-x: 80%;
+  padding-left: 85px;
+  min-height: 110px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #AADAE6;
+  margin-bottom: 2%;
 }
 
 /* Search bar */
@@ -44,7 +57,7 @@ h3 a {
 }
 
 .search-container {
-  background-image: url("./images/dogs_header.jpg");
+  background-image: url("/images/dogs_header.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   /* background-position: center; */

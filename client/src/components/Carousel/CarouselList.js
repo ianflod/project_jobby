@@ -4,6 +4,7 @@ import "./carousel.css";
 import Carousel, { slidesToShowPlugin } from '@brainhubeu/react-carousel';
 
 import '@brainhubeu/react-carousel/lib/style.css';
+import Header from "../Header"
 
 const CarouselList = ({ featuredJobs }) => {
 

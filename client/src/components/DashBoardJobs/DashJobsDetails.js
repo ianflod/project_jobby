@@ -1,19 +1,23 @@
 import React from "react";
+import Header from "../Header";
 
-const DashJobsDetails = ({appliedForJob, handleDelete}) => {
+const DashJobsDetails = ({ appliedForJob, handleDelete }) => {
 
-    if (!appliedForJob){
+    if (!appliedForJob) {
         return "Loading..."
-      }
+    }
 
-      const onDelete = () => {
+    const onDelete = () => {
         handleDelete(appliedForJob.id)
-        }
+    }
 
     return (
-        <div className = "component">
-            <p>{appliedForJob.employerName}</p>
-            <button onClick={onDelete}>Delete</button>
+        <div>
+            <Header />
+            <div className="component">
+                <p>{appliedForJob.employerName}</p>
+                <button onClick={onDelete}>Delete</button>
+            </div>
         </div>
     )
 }
