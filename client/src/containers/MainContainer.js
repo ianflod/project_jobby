@@ -10,9 +10,7 @@ import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
 import Login from "./Login.js";
 import DashJobsUpdateForm from "../components/DashBoardJobs/DashJobsUpdateForm.js";
-
 import EventJobsCreateForm from "../components/DashBoardJobs/EventJobsCreateForm.js"
-
 import Logout from "./Logout.js";
 
 
