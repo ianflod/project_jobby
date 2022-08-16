@@ -15,11 +15,11 @@ const ReedJobsList = ({ reedJobs }) => {
 	return (
 		<>
 			<div className="reedJobList">
-				<div className="flex-container">
+				<div className="flex-container container-top-padding">
 					{reedJobsElements}
 				</div>
-				<div className="flex-container">
-					<button onClick={load_more} className="button">Load More</button>
+				<div className="flex-container container-top-padding">
+					<button onClick={load_more} className="button-home">Load More</button>
 				</div>
 			</div>
 		</>

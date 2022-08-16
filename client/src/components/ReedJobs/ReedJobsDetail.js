@@ -26,7 +26,7 @@ const ReedJobsDetail = ({ reedJob, handleSelectedJob }) => {
                     {reedJob.maximumSalary ? <p>£{reedJob.maximumSalary}</p> : null}
                     <p>date posted:{reedJob.date}</p>
                     <p>Expiration date:{reedJob.expirationDate}</p>
-                    <Link to={url}><button onClick={handleWatchedJobsSelection}>ADD TO WATCHLIST BUTTON</button></Link>
+                    <Link to={url}><button className="button-general" onClick={handleWatchedJobsSelection}>ADD TO WATCHLIST BUTTON</button></Link>
                 </div>
             </div>
         )
