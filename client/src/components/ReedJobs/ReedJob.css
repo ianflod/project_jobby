@@ -21,9 +21,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-top: 50px;
     padding-left: 10%;
     padding-right: 10%;
     align-content: center;
     justify-content: center;
+}
+
+.container-top-padding {
+    padding-top: 50px;
 }

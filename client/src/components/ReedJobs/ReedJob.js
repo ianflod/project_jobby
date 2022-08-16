@@ -6,6 +6,15 @@ const ReedJob = ({ reedJob }) => {
 
   const url = "/" + reedJob._id;
 
+  //From https://stackoverflow.com/questions/1301512/truncate-a-string-straight-javascript
+  function truncateString(str, num) {
+    if (str.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  }
+
 
   if (!reedJob) {
     return "loading..."
@@ -15,7 +24,7 @@ const ReedJob = ({ reedJob }) => {
 
     <div className="reedJob">
       <h3>
-        <a href={url}>{reedJob.jobTitle} </a>
+        <a href={url}>{truncateString(reedJob.jobTitle, 60)} </a>
       </h3>
 
       <p>{reedJob.locationName}</p>

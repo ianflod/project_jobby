@@ -40,7 +40,7 @@ const DashJobsForm = ({ onCreate }) => {
 
     return (
         <div>
-            <Header/>
+            <Header />
             <form onSubmit={handleSubmit} className="form">    {/* Form to be reStyled */}
                 <input type="text" placeholder="Employer Name" name="employerName" onChange={handleChange} value={appliedJobsState.employerName} />
                 <input type="text" placeholder="Job Title" name="jobTitle" onChange={handleChange} value={appliedJobsState.jobTitle} />

@@ -12,7 +12,6 @@ const EventsList = ({ events }) => {
         return (
 
             <div key={index} className="events-item">
-
                 <div className="events-component">
                     <Event event={event} />
                 </div>
@@ -25,7 +24,6 @@ const EventsList = ({ events }) => {
             {eventsElement}
         </div>
     )
-
 }
 
 export default EventsList;

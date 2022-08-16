@@ -32,14 +32,18 @@ const DashJobsDetails = ({ appliedForJob, handleDelete, events }) => {
             <div>
                 <Header />
             </div>
-
             <div className="component">
                 <p>{appliedForJob.employerName}</p>
-                <button onClick={onDelete}>Delete</button>
-                <Link to={url}><button>Update</button></Link>
-                <Link to={urlEvent}><button>Add Event</button></Link>
-                <EventsList events={events} />
+                <div className="applied-btn-container">
+                    <EventsList events={events} />
+                    <button className="button-general" onClick={onDelete}>Delete</button>
+                    <Link to={url}>
+                        <button className="button-general">Update</button></Link>
+                    <Link to={urlEvent}>
+                        <button className="button-general">Add Event</button></Link>
+                    <EventsList events={appliedForJob.events} />
 
+                </div>
             </div>
         </>
     )

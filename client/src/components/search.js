@@ -28,12 +28,13 @@ const Search = ({ filterJobs }) => {
 
 
           <div className="search-label">
-            <label htmlFor="jobTitle"> Job Title: </label>
+            <div className="search-label-text">
+              <label htmlFor="findAJob">Find your dream job!</label>
+            </div>
             <input type="text" placeholder="Job Title" id="jobTitle" name="jobTitle" value={searchTerms.jobTitle} onChange={handleChange} />
             <br></br>
           </div>
           <div className="search-label">
-            <label htmlFor="location">Location: </label>
             <input type="text" placeholder="Location" id="location" name="location" value={searchTerms.location} onChange={handleChange} />
           </div>
         </div>
