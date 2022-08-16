@@ -44,7 +44,7 @@ h3 a {
 }
 
 .search-container {
-  background-image: url("./images/dogs_header.jpg");
+  background-image: url("/images/dogs_header.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   /* background-position: center; */

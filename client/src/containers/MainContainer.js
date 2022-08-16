@@ -9,7 +9,7 @@ import Request from '../helpers/request.js';
 import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
 import DashJobsUpdateForm from "../components/DashBoardJobs/DashJobsUpdateForm.js";
-
+import EventJobsCreateForm from "../components/DashBoardJobs/EventJobsCreateForm.js"
 
 
 const MainContainer = () => {
@@ -18,7 +18,13 @@ const MainContainer = () => {
   const [watchedJobs, setWatchedJobs] = useState([]);
   const [appliedForJobs, setAppliedForJobs] = useState([]);
   const [featuredJobs, setFeaturedJobs] = useState([]);
+  const [events, setEvents] = useState([]);
 
+
+
+  useEffect(() => {
+    getEvents()
+  }, [])
 
   useEffect(() => {
     getFeaturedJobs();
@@ -35,6 +41,16 @@ const MainContainer = () => {
   useEffect(() => {
     getWatchedJobs()
   }, []);
+
+
+
+  const getEvents = () => {
+    fetch("http://localhost:8080/api/events")
+      .then(res => res.json())
+      .then(eventsData => setEvents(eventsData))
+  }
+
+
 
   const getFeaturedJobs = () => {
     fetch("http://localhost:9000/api/jobs")
@@ -65,7 +81,20 @@ const MainContainer = () => {
     else {
       console.log("no applied job");
     }
+  }
 
+    const createEvent = (event, appliedJob) => {
+      console.log(appliedJob);
+      appliedForJobs.pop(appliedJob);
+      if(Object.keys(appliedJob).indexOf("events") == -1){
+          appliedJob["events"] = []
+      }
+      const copyEvents = [...appliedJob.events]
+      copyEvents.push(event)
+      appliedJob.events = copyEvents
+      let jobToUpdate = findAppliedForJobById(appliedJob.id)
+      jobToUpdate = appliedJob;
+      setAppliedForJobs([...appliedForJobs, jobToUpdate])
   }
 
   const createWatchedJob = (watchedJob) => {
@@ -120,7 +149,7 @@ const MainContainer = () => {
 
     const foundAppliedForJob = findAppliedForJobById(id)
     // console.log(foundAppliedForJob); undefined
-    return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete} />;
+    return <DashJobsDetails appliedForJob={foundAppliedForJob} handleDelete={handleDelete} events={events}/>;
   };
 
   const WatchedJobsDetailWrapper = () => {
@@ -203,6 +232,14 @@ const MainContainer = () => {
     return <DashJobsUpdateForm appliedForJob={foundAppliedForJob}  onUpdate={handleUpdate} onCreate={createAppliedJob}/>
   }
 
+const EventsCreateFormWrapper = () => {
+  const { id } = useParams();
+  const foundAppliedForJob = findAppliedForJobById(id)
+  console.log(foundAppliedForJob)
+  return <EventJobsCreateForm createEvent={createEvent} appliedForJob={foundAppliedForJob}/>
+}
+
+ 
   return (
     <Router>
       <NavBar />
@@ -218,6 +255,9 @@ const MainContainer = () => {
         > </Route>
         <Route path="/applied-for-jobs/:id/edit" element={
            <DashJobsUpdateFormWrapper/> 
+        }/>
+         <Route path="/applied-for-jobs/:id/create-event" element={
+           <EventsCreateFormWrapper/> 
         }/>
         <Route path="/:id" element={
           <ReedJobsDetailWrapper />
