@@ -21,7 +21,7 @@ const Search = ({ filterJobs }) => {
       <div className="search-container">
 
         <div className="logo">
-          <img src="/images/logo_transparent_background.png" />
+          <img className="home-logo" src="/images/logo_transparent_background.png" />
         </div>
         <div></div>
         <div className="search-bar">
