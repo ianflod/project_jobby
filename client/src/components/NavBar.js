@@ -16,6 +16,9 @@ const NavBar = () => {
                     <li >
                         <Link to="/application-form">Add New Application</Link>
                     </li>
+                    <li>
+                        <Link to="/login">Login</Link>
+                    </li>
                 </ul>
             </div>
         </header>

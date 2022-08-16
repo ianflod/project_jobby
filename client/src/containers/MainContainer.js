@@ -8,12 +8,19 @@ import ReedJobsDetail from "../components/ReedJobs/ReedJobsDetail.js";
 import Request from '../helpers/request.js';
 import DashJobsDetails from "../components/DashBoardJobs/DashJobsDetails.js";
 import WatchListJobsDetail from "../components/WatchListJobs/WatchListJobsDetails";
+import Login from "./Login.js";
 import DashJobsUpdateForm from "../components/DashBoardJobs/DashJobsUpdateForm.js";
 
 
 
-const MainContainer = () => {
 
+const MainContainer = () => {
+  const [loggedInUser, setLoggedInUser] = useState(() => {
+    const saved = localStorage.getItem("loggedInUser");
+    const initialValue = JSON.parse(saved);
+    return initialValue || {}
+  });
+  const [users, setUsers] = useState([]);
   const [reedJobs, setReedJobs] = useState([]);
   const [watchedJobs, setWatchedJobs] = useState([]);
   const [appliedForJobs, setAppliedForJobs] = useState([]);
@@ -36,6 +43,24 @@ const MainContainer = () => {
     getWatchedJobs()
   }, []);
 
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
+  }, [loggedInUser])
+
+  useEffect(() => {
+    setLoggedInUser(JSON.parse(window.localStorage.getItem('loggedInUser')))
+  }, [])
+
+  const getAllUsers = () => {
+    fetch("http://localhost:8080/api/users")
+      .then(res => res.json())
+      .then(allUsers => setUsers(allUsers));
+  }
+
   const getFeaturedJobs = () => {
     fetch("http://localhost:9000/api/jobs")
       .then(res => res.json())
@@ -53,6 +78,12 @@ const MainContainer = () => {
     fetch("http://localhost:8080/api/jobs/applied")
       .then(res => res.json())
       .then(appliedForJobsData => setAppliedForJobs(appliedForJobsData))
+  }
+
+  const getLoggedInUser = (userToLogIn) => {
+    setLoggedInUser(userToLogIn);
+    getWatchedJobs();
+    getAppliedForJobs();
   }
 
   const createAppliedJob = (appliedJob) => {
@@ -206,15 +237,18 @@ const MainContainer = () => {
   return (
     <Router>
       <NavBar />
+      {loggedInUser.email == null ? <h1>Welcome to Joable</h1> : <h1>Welcome Back {loggedInUser.firstName}</h1>}
       <Routes>
         <Route path="/dashboard" element={
-          <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
+          loggedInUser.email == null ?
+            <Login users={users} getLoggedInUser={getLoggedInUser} /> : <DashboardContainer watchedJobs={watchedJobs} appliedForJobs={appliedForJobs} />}
         > </Route>
         <Route path="/" element={
           <Home reedJobs={reedJobs} featuredJobs={featuredJobs} />}
         > </Route>
         <Route path="/application-form" element={
-          <DashJobsForm onCreate={createAppliedJob} />}
+          loggedInUser.email == null ?
+            <Login users={users} getLoggedInUser={getLoggedInUser} /> : <DashJobsForm onCreate={createAppliedJob} />}
         > </Route>
         <Route path="/applied-for-jobs/:id/edit" element={
            <DashJobsUpdateFormWrapper/> 
