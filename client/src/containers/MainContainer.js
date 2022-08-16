@@ -171,6 +171,7 @@ const MainContainer = () => {
       // .then(() => {
       //   // window.location = '/dashboard';
       // });
+      .then(() => window.location = '/dashboard');
     }
     else {
       console.log("job not found");

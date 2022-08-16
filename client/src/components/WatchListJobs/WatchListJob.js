@@ -11,11 +11,13 @@ const WatchListJob = ({ watchedJob }) => {
 
     return (
         <div className='watchedJob'>
-            <h5>{watchedJob.jobTitle}</h5>
+            <h5>
+             <a href={url}>{watchedJob.jobTitle}</a>
+            </h5>
             <p>{watchedJob.employerName}</p>
             <p>{watchedJob.date}</p>
             {/* <a href={watchedJob.jobUrl}>Apply Here!</a> */}
-            <Link to={url}><button>More details</button></Link>
+            {/* <Link to={url}><button>More details</button></Link> */}
         </div>
     )
 }

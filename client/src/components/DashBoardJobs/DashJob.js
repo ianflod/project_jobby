@@ -14,10 +14,12 @@ const DashJob = ({appliedForJob}) => {
 
     return (
         <div className='dashJob'>
-            <h5>{appliedForJob.jobTitle}</h5>
+            <h5>
+                <a href={url}>{appliedForJob.jobTitle}</a>
+            </h5>
             <p>{appliedForJob.employerName}</p>
             <p>{appliedForJob.date}</p>
-            <Link to={url}><button>More details</button></Link>
+            {/* <Link to={url}><button>More details</button></Link> */}
         </div>
     )
 
