@@ -20,7 +20,7 @@ const CarouselList = ({ featuredJobs }) => {
     })
 
 
-    console.log(carouselItemsElement)
+    // console.log(carouselItemsElement)
 
     return (
         <Carousel className="featured-component-list"
