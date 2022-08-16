@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
@@ -48,7 +48,7 @@ const Login = ({ users, getLoggedInUser, loggedInUser }) => {
 
         return (
 
-            <div className="Login">
+            <div className="flex-container container-top-padding">
 
                 <Form onSubmit={handleSubmit}>
 
@@ -86,11 +86,11 @@ const Login = ({ users, getLoggedInUser, loggedInUser }) => {
 
                     </Form.Group>
 
-                    <Button block size="lg" type="submit" disabled={!validateForm()}>
+                    <button className="button-general" block size="lg" type="submit" disabled={!validateForm()}>
 
                         Login
 
-                    </Button>
+                    </button>
 
                 </Form>
 

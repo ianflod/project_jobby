@@ -31,7 +31,7 @@ const WatchListJobsDetail = ({ watchedJob, handleChange, handleDelete }) => {
                     <p>date posted:{watchedJob.date}</p>
                     <p>Expiration date:{watchedJob.expirationDate}</p>
                     {/* <Link to={url}><button onClick={handleChangeOfState}>Set to Applied Job</button></Link> */}
-                    <a href={watchedJob.jobUrl} target="_blank"><button onClick={handleChangeOfState}>Apply for this Job</button></a>
+                    <a href={watchedJob.jobUrl} target="_blank"><button className="button-general" onClick={handleChangeOfState}>Apply for this Job</button></a>
                     {/* <button onClick={onDelete}>Delete</button> */}
 
                 </div>

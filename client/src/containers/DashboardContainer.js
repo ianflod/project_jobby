@@ -6,12 +6,16 @@ import WatchListJob from "../components/WatchListJobs/WatchListJob"
 import WatchListJobsList from "../components/WatchListJobs/WatchListJobsList";
 import "../components/DashBoardJobs/DashJobs.css";
 import Header from "../components/Header";
+import ExplodingConfetti from "../components/ExplodingConfetti";
 
 const DashboardContainer = ({ watchedJobs, appliedForJobs }) => {
 
     return (
         <div>
             <Header />
+            <div className="flex-container">
+                <ExplodingConfetti />
+            </div>
             <div className='dashBoard'>
                 <div className="dashApplied">
                     <h2 id="dashAppliedTitle">My Applied for Jobs!</h2>
