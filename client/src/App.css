@@ -3,6 +3,9 @@ h1 {
   padding-left: 5%;
 }
 
+h3 a {
+  font-size: 20px;
+}
 
 .ul-navbar {
   list-style-type: none;
@@ -48,7 +51,8 @@ h3 a {
   /* align-items: center; */
   background-color: #AADAE6;
   margin-bottom: 2%;
-
+  padding-top: 1%;
+  ;
 }
 
 
@@ -87,12 +91,18 @@ h3 a {
 .search-label {
   /* flex-grow: 1; */
   padding-right: 30px;
+  padding-bottom: 15px;
+  ;
 }
 
+.search-label-text {
+  margin-bottom: 5%;
+}
 
 
 .background {
   background-color: white;
+  margin-bottom: 5%;
 }
 
 .home-logo {
@@ -109,8 +119,8 @@ h3 a {
   /* margin: 2%; */
 }
 
-/* CSS */
-.button {
+/* Buttons */
+.button-home {
   background-color: #AADAE6;
   border: 0 solid #E5E7EB;
   box-sizing: border-box;
@@ -136,11 +146,11 @@ h3 a {
   touch-action: manipulation;
 }
 
-.button:focus {
+.button-home:focus {
   outline: 0;
 }
 
-.button:after {
+.button-home:after {
   content: '';
   position: absolute;
   border: 1px solid #000000;
@@ -150,14 +160,71 @@ h3 a {
   height: calc(100% - 1px);
 }
 
-.button:hover:after {
+.button-home:hover:after {
   bottom: 2px;
   left: 2px;
 }
 
 @media (min-width: 768px) {
-  .button {
+  .button-home {
     padding: .75rem 3rem;
     font-size: 1.25rem;
   }
+}
+
+.button-general {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 5px;
+}
+
+.button-general:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.button-general:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.applied-btn-container {
+  display: flex;
+  justify-content: left;
+}
+
+.modal-img {
+  text-justify: center;
+}
+
+.modal-content {
+  text-justify: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
