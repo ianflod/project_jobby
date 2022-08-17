@@ -39,6 +39,10 @@ h3 a {
   color: black;
 }
 
+h3 {
+  padding-left: 2%;
+}
+
 .banner {
   /* background-size: contain;
   background-repeat: no-repeat; */
