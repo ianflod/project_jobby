@@ -303,7 +303,9 @@ const MainContainer = () => {
   return (
     <Router>
       <NavBar loggedInUser={loggedInUser} logoutUser={logoutUser} />
-      {loggedInUser.email == null ? <h3>Welcome to Joable!</h3> : <h3>Welcome back {loggedInUser.firstName}!</h3>}
+      <div className="welcome-message">
+        {loggedInUser.email == null ? <h3 >Welcome to Joable!</h3> : <h3>Welcome back {loggedInUser.firstName}!</h3>}
+      </div>
       <Routes>
         <Route path="/dashboard" element={
           loggedInUser.email == null ?
