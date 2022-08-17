@@ -16,9 +16,11 @@ const Event = ({ event }) => {
 
     return (
         <div className='event'>
-            <p>Event: {eventTypeForDisplay}</p>
-            <p>Comments Made: {event.comments}</p>
-            <p>Date: {event.date}</p>
+            <br></br>
+            <h6>Event: {eventTypeForDisplay}</h6>
+            <h6>Comments Made: {event.comments}</h6>
+            <h6>Date: {event.date}</h6>
+            <br></br>
         </div>
     )
 

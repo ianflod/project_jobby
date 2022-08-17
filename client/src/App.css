@@ -215,6 +215,7 @@ h3 a {
 
 .applied-btn-container {
   display: flex;
+  flex-direction: column;
   justify-content: left;
 }
 
