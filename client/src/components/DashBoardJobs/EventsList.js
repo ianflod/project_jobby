@@ -5,7 +5,7 @@ import './DashJobs.css';
 const EventsList = ({ events }) => {
 
     if (!events) {
-        return "No Current Events to Show"
+        return <p style={{ color: "white" }}>No Current Events to Show</p>
     }
     
         const eventsElement = events.map((event, index) => {
