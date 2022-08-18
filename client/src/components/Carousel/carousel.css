@@ -1,0 +1,122 @@
+.featured {
+    text-align: center;
+    color: rgb(70, 72, 71);
+
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.featured-component-list {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    overflow: hidden;
+    text-align: center;
+    scroll-snap-type: x mandatory;
+
+}
+
+.featured-component-list {
+    list-style-type: none
+}
+
+.featured-component-list {
+    display: flex;
+
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /*
+    scroll-snap-points-x: repeat(300px);
+    scroll-snap-type: mandatory;
+    */
+}
+
+.featured-component-item::-webkit-scrollbar {
+    width: 100px;
+    height: 100px;
+}
+
+.featured-component-item::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 100px;
+}
+
+.featured-component-item::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.featured-component-item {
+
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    /* background: #eee; */
+    background: #f5dce0;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    border-style: solid;
+    border-color: rgb(243, 243, 244);
+    /* background-position: center; */
+    background-position: bottom;
+    margin: 5px;
+
+
+}
+
+.carousel-text {
+    font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 15px;
+
+
+}
+
+/* .featured-component-item>div:target { */
+/* transform: scale(0.8);
+} */
+
+
+
+
+
+
+
+.featured-component-item>a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0.5rem 0;
+
+}
+
+/* .featured-component-item>a:active {
+    top: 1px;
+} */
+
+/* .featured-component-item>a:focus {
+    background: #000;
+} */
+
+/* Don't need button navigation */
+@supports (scroll-snap-type) {
+    .featured-component-item>a {
+        display: none;
+    }
+}

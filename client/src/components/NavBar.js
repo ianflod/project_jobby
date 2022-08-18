@@ -1,18 +1,31 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
 
-const NavBar = () => {
+
+const NavBar = ({ loggedInUser, logoutUser }) => {
     return (
         <header>
-            <ul>
-                <li className="navLink">
-                    <a href="/">Home</a>
-                </li>
-                <li className="navLink">
-                    <a href="/dashboard">DashBoard</a>
-                </li>
-            </ul>
+            <div>
+                <ul className="ul-navbar">
+                    <li >
+                        <Link to="/" >Home</Link>
+                    </li>
+                    <li >
+                        <Link to="/dashboard">DashBoard</Link>
+                    </li>
+                    <li >
+                        <Link to="/application-form">Add New Application</Link>
+                    </li>
+                    <li>
+                        {loggedInUser.email == null ? <Link to="/login">Login</Link> : <Link to="/logout" onClick={logoutUser}>Logout</Link>}
+
+                    </li>
+
+                </ul>
+            </div>
         </header>
     )
 }
+
 
 export default NavBar;

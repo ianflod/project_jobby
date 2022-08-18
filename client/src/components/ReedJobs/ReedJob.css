@@ -1,0 +1,32 @@
+.reedJob {
+    border-radius: 30px;
+    box-shadow: 0 0 5px 2px rgba(130, 128, 128, 0.4);
+    margin: 1%;
+    width: 340px;
+    height: 280px;
+    padding: 2%;
+    transform: translateY(var(--translate-y, 0));
+    background-color: ghostwhite;
+
+}
+
+.reedJob:hover {
+    --translate-y: -2px;
+    box-shadow: 0 0 5px 2px #AADAE6;
+
+}
+
+.flex-container {
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
+    align-content: center;
+    justify-content: center;
+}
+
+.container-top-padding {
+    padding-top: 50px;
+}

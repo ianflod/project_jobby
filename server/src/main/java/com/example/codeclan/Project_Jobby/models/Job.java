@@ -1,5 +1,6 @@
 package com.example.codeclan.Project_Jobby.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,7 +29,7 @@ public class Job implements Serializable {
     private int maximumSalary;
     @Column(name="date")
     private LocalDate date;
-    @Column(name="job_desc")
+    @Column(name="job_desc", length=6064)
     private String jobDescription;
     @Column(name="no_of_applications")
     private int applications;
@@ -42,24 +42,33 @@ public class Job implements Serializable {
     @Column(name="applied")
     private Boolean appliedFor;
 
-    @JsonIgnoreProperties({"jobs"})
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
-    @JsonIgnoreProperties
     @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE) // WHAT DOES THIS DO?
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
-            name="jobs_events",
-            joinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "event_id", nullable = false, updatable = false)}
+            name = "fave_jobs_users",
+            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
     )
+    private List<User> userFave;
+
+
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @JoinTable(
+            name = "applied_jobs_users",
+            joinColumns = {@JoinColumn(name = "job_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false)}
+    )
+    private List<User> userApplied;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "job")
     private List<Event> events;
 
+
     public Job(String employerName, String jobTitle, String locationName, int minimumSalary, int maximumSalary,
-      LocalDate date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor
-      , User user) {
+      LocalDate date, String jobDescription, int applications, String jobUrl,  Boolean isFavorite, Boolean appliedFor) {
         this.employerName = employerName;
         this.jobTitle = jobTitle;
         this.locationName = locationName;
@@ -71,13 +80,22 @@ public class Job implements Serializable {
         this.jobUrl = jobUrl;
         this.isFavorite = isFavorite;
         this.appliedFor = appliedFor;
-        this.user = user;
         // questions over events being here
         this.events = new ArrayList<>();
+        this.userFave = new ArrayList<>();
+        this.userApplied = new ArrayList<>();
     }
 
     public Job(){
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmployerName() {
@@ -180,6 +198,29 @@ public class Job implements Serializable {
         this.events.add(event);
     }
 
+    public List<User> getUserFave() {
+        return userFave;
+    }
+
+    public void setUserFave(List<User> userFave) {
+        this.userFave = userFave;
+    }
+
+    public List<User> getUserApplied() {
+        return userApplied;
+    }
+
+    public void setUserApplied(List<User> userApplied) {
+        this.userApplied = userApplied;
+    }
+
+    public void addUserFave(User userFave) {
+        this.userFave.add(userFave);
+    }
+
+    public void addUserApplied(User userApplied) {
+        this.userApplied.add(userApplied);
+    }
 }
 
 
